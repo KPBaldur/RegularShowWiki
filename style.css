@@ -70,6 +70,19 @@ header nav ul li a:hover {
     line-height: 20px;
 }
 
+.main .tarjeta-personaje {
+    width: 45%;
+    height: 150px;
+    background: #343434;
+    display: table-column;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.main .tarjeta-personaje img {
+    width: 50%;
+}
+
 aside {
     width: 30%;
     background: #161f26;
