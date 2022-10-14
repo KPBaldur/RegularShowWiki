@@ -139,6 +139,10 @@ aside .widget p a{
     color: turquoise;
 }
 
+aside .widget p a:hover{
+    color: #ff8000;
+}
+
 footer {
     width: 70%;
     background: #000;
