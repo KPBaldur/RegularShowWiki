@@ -11,6 +11,9 @@ body { font-family: 'Comic Neue', cursive,'Open-Sans',roboto, Helvetica, sans-se
     overflow: hidden;
 }
 
+/*-------------HEADER-----------*/
+/*##############################*/
+
 header {
     background: antiquewhite;
 }
@@ -40,6 +43,9 @@ header nav ul li a:hover {
     background: #343434;
     color: #fff;
 }
+
+/*-------------MAIN-------------*/
+/*##############################*/
 
 .main {
     width: 70%;
@@ -83,6 +89,9 @@ header nav ul li a:hover {
     width: 50%;
 }
 
+/*-------------ASIDE------------*/
+/*##############################*/
+
 aside {
     width: 30%;
     background: #161f26;
@@ -107,13 +116,11 @@ aside .widget .imagen img {
 
 aside .widget .titulo {
     color: #ff8000;
-    border-bottom: 1px solid #ff8000;
-    
+    border-bottom: 1px solid #ff8000; 
 }
 
 aside .widget ul {
     list-style: none;
-
 }
 
 aside .widget ul li {
@@ -143,6 +150,9 @@ aside .widget p a:hover{
     color: #ff8000;
 }
 
+/*-------------FOOTER------------*/
+/*###############################*/
+
 footer {
     width: 70%;
     background: #000;
@@ -151,6 +161,9 @@ footer {
     padding: 15px 0;
     text-align: center;
 }
+
+/*-------------MEDIAQUERY------------*/
+/*###################################*/
 
 @media screen and (max-width:800px) {
     .main {
