@@ -76,16 +76,15 @@ header nav ul li a:hover {
     line-height: 20px;
 }
 
-.main .tarjeta-personaje {
+.main .posts .tarjeta-personaje {
     width: 45%;
     height: 150px;
     background: #343434;
-    display: table-column;
     text-align: justify;
     margin-bottom: 25px;
 }
 
-.main .tarjeta-personaje img {
+.main .posts .tarjeta-personaje img {
     width: 50%;
 }
 
