@@ -76,6 +76,30 @@ header nav ul li a:hover {
     line-height: 20px;
 }
 
+.main .container-video {
+    display: flex;
+    justify-content: center
+}
+
+.main .botonera-plataformas {
+    width: 100%;
+    display: row;
+    text-align: center;
+}
+
+.main .botonera-plataformas .boton-hbomax img{
+    width: 35%;
+}
+
+.main .botonera-plataformas .boton-cuevana img{
+    width: 35%;
+}
+
+.main .botonera-plataformas .boton-cinehdplus img{
+    width: 35%;
+}
+
+
 .main .posts .tarjeta-personaje {
     width: 45%;
     height: 150px;
