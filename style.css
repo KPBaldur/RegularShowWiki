@@ -87,18 +87,13 @@ header nav ul li a:hover {
     text-align: center;
 }
 
+.main .images-piloto {
+    text-align: center;
+}
+
 .main .botonera-plataformas .boton-hbomax img{
     width: 25%;
 }
-
-.main .botonera-plataformas .boton-cuevana img{
-    width: 25%;
-}
-
-.main .botonera-plataformas .boton-cinehdplus img{
-    width: 25%;
-}
-
 
 .main .posts .tarjeta-personaje {
     width: 45%;
@@ -199,5 +194,14 @@ footer {
 
     footer {
         width: 100%;
+    }
+
+    .main .botonera-plataformas {
+        display: flexbox;
+        align-content: center;
+    }
+
+    .main .botonera-plataformas .boton-hbomax img {
+        width: 50%;
     }
 }
