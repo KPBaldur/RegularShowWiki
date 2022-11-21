@@ -66,6 +66,16 @@ header nav ul li a:hover {
     padding: 40px;
 }
 
+.main .contenedor-contacto {
+    width: 100%;
+    background: #343434;
+}
+
+.main .contenedor-contacto .icono i{
+    width: 200px;
+
+}
+
 .main .posts article h2 {
     margin-bottom: 20px;
     color: #424242;
