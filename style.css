@@ -68,13 +68,29 @@ header nav ul li a:hover {
 
 .main .contenedor-contacto {
     width: 100%;
-    background: #343434;
+    display: inline-block;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
 }
 
-.main .contenedor-contacto .icono i{
-    width: 200px;
-
+.main .contenedor-contacto a{
+    width: 45%;
+    height: 50px;
+    display: inline-block;
+    margin: 10px 0;
+    padding: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0099e5;
 }
+
+.main .contenedor-contacto a:hover{
+    color: #343434;
+    background-color: #fff;
+    border: solid #0099e5;
+}
+
 
 .main .posts article h2 {
     margin-bottom: 20px;
