@@ -121,17 +121,53 @@ header nav ul li a:hover {
     width: 25%;
 }
 
-.main .posts .tarjeta-personaje {
-    width: 45%;
-    height: 150px;
-    background: #343434;
-    text-align: justify;
-    margin-bottom: 25px;
-}
+/*-------------TARJETA DE PERSONAJE------------*/
+/*#############################################*/
 
-.main .posts .tarjeta-personaje img {
-    width: 50%;
-}
+
+.card {
+    width: 25%;
+    height: 350px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    overflow: hidden;
+    margin: 20px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit:cover ;
+    position: relative;
+  }
+  
+  .card h2 {
+    padding: 5px;
+    font-size: 22px;
+  }
+  
+  .card p {
+    padding: 5px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card .stats {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .card .stats span:first-child {
+    font-weight: bold;
+  }
+  
 
 /*-------------ASIDE------------*/
 /*##############################*/
