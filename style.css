@@ -69,6 +69,7 @@ header nav ul li a:hover {
 .main .contenedor-contacto {
     width: 100%;
     display: inline-block;
+    align-items: center;
     justify-content: center;
     overflow: hidden;
     text-align: center;
@@ -78,6 +79,7 @@ header nav ul li a:hover {
     width: 45%;
     height: 50px;
     display: inline-block;
+    align-items: center;
     margin: 10px 0;
     padding: center;
     text-decoration: none;
