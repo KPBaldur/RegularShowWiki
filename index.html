@@ -89,18 +89,7 @@
                     Algunos de los personajes
                 </h2>
                 
-                <div class="card">
-                    <img src="Mordecai.jpg" alt="Character Image">
-                    <h2>Mordecai</h2>
-                    <p class="stats">
-                      <span>Raza</span> <span>Pajaro-Humano</span><br>
-                      <span>Edad</span> <span>23 años</span><br>
-                      <span>Genero</span> <span>Hombre</span>
-                    </p>
-                    <p>Description of the character goes here.</p>
-                  </div>
-
-                  
+                <div id="personajes-dinamicos"></div>
 
                 <!--###################################################-->
                 <!------------------SEPARADOR DE CONTENIDO---------------> <br><hr><br>
@@ -170,6 +159,40 @@
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
+
     <script src="https://kit.fontawesome.com/b918cc0237.js" crossorigin="anonymous"></script>
+    
+
 </body>
+    <script>
+        async function cargarPersonajes() {
+            try {
+            const response = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6"); // o tu dominio real
+            const personajes = await response.json();
+
+            const contenedor = document.getElementById("personajes-dinamicos");
+            contenedor.className = "contenedor-personajes";
+
+            personajes.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                <img src="img/${p.nombre_ingles}.jpg" alt="Imagen de ${p.nombre}">
+                <h2>${p.nombre}</h2>
+                <p class="stats">
+                    <span>Raza</span> <span>${p.raza}</span><br>
+                    <span>Profesión</span> <span>${p.profesion}</span><br>
+                    <span>Estado</span> <span>${p.estado}</span>
+                </p>
+                <p>Aparece en: ${p.capitulo_aparicion}</p>
+                `;
+                contenedor.appendChild(card);
+            });
+            } catch (error) {
+            console.error("Error al cargar personajes:", error);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", cargarPersonajes);
+    </script>
 </html>
