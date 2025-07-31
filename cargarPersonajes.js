@@ -1,7 +1,7 @@
 // Cargar personajes principales
 async function cargarPersonajesPrincipales() {
     try {
-        const response = await fetch("http://127.0.0.1:8000/personajes/principales");
+        const response = await fetch("https://apiregularshow.onrender.com/personajes/principales");
         const personajes = await response.json();
 
         const contenedor = document.getElementById("personajes-principales");
@@ -28,7 +28,7 @@ async function cargarPersonajesPrincipales() {
 // Cargar personajes aleatorios
 async function cargarPersonajesAleatorios() {
     try {
-        const response = await fetch("http://127.0.0.1:8000/personajes/aleatorio/6");
+        const response = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6");
         const personajes = await response.json();
 
         const contenedor = document.getElementById("personajes-dinamicos");
