@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Regular Show Wiki</title>
 </head>
+
 <body>
 
     <div class="header">
@@ -90,6 +91,12 @@
                 <!--###################################################-->
                 
                 <h2>
+                    Los personajes principales
+                </h2>
+
+                <div id="personajes-principales"></div>
+
+                <h2>
                     Algunos de los personajes
                 </h2>
                 
@@ -162,40 +169,9 @@
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
-
+    <script src="cargarPersonajes.js"></script>
     <script src="https://kit.fontawesome.com/b918cc0237.js" crossorigin="anonymous"></script>
     
 
 </body>
-    <script>
-        async function cargarPersonajes() {
-            try {
-            const response = await fetch("http://127.0.0.1:8000/personajes/aleatorio/6"); // o tu dominio real
-            const personajes = await response.json();
-
-            const contenedor = document.getElementById("personajes-dinamicos");
-            contenedor.className = "contenedor-personajes";
-
-            personajes.forEach(p => {
-                const card = document.createElement("div");
-                card.className = "card";
-                card.innerHTML = `
-                    <img src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
-                    <h2>${p.nombre}</h2>
-                    <p class="stats">
-                        <span>Raza</span> <span>${p.raza}</span><br>
-                        <span>Profesión</span> <span>${p.profesion}</span><br>
-                        <span>Estado</span> <span>${p.estado}</span>
-                    </p>
-                    <p>Aparece en: ${p.capitulo_aparicion}</p>
-                `;
-                contenedor.appendChild(card);
-            });
-            } catch (error) {
-            console.error("Error al cargar personajes:", error);
-            }
-        }
-
-        window.addEventListener("DOMContentLoaded", cargarPersonajes);
-    </script>
 </html>
