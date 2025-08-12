@@ -1,10 +1,6 @@
 // Cargar personajes principales
 
-// Antes de fetch:
-contenedor.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
 
-// En catch:
-contenedor.innerHTML = '<p class="error">No se pudieron cargar los personajes. Intenta más tarde.</p>';
 
 
 async function cargarPersonajesPrincipales() {
@@ -65,3 +61,10 @@ window.addEventListener("DOMContentLoaded", () => {
     cargarPersonajesPrincipales();
     cargarPersonajesAleatorios();
 });
+
+
+// Antes de fetch:
+contenedor.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
+
+// En catch:
+contenedor.innerHTML = '<p class="error">No se pudieron cargar los personajes. Intenta más tarde.</p>';
