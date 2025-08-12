@@ -22,11 +22,12 @@
             <nav>
                 <ul>
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="capitulos.html">Capitulos</a></li>
+                    <li><a href="pages/capitulos.html">Capitulos</a></li>
                     <li><a href="comics.html">Comics</a></li>
                     <li><a href="la-pelicula.html">La Pelicula</a></li>
                     <li><a href="personajes.html">Personajes</a></li>
                     <li><a href="acerca-de.html">Regular Show API</a></li>
+                    <li><a href="acerca-de.html">Docs API</a></li>
                     <li><a href="acerca-de.html">Acerca de</a></li>
                 </ul>
             </nav>
@@ -36,55 +37,45 @@
             <div class="imagen-desktop">
                 <img src="img/Home-Desktop.jfif" alt="">
             </div>
+
+            <section class="hero">
+                    <h1>Regular Show Wiki API</h1>
+                    <p>
+                        Bienvenidos al proyecto <strong>Regular Show Wiki API</strong>. Aquí podrás encontrar información relacionada a la
+                        serie animada creada por <em>J.G. Quintel</em>: personajes, episodios y cómics, además de un pequeño agregado sobre la película.
+                    </p>
+                    <p>
+                        Este proyecto es <strong>sin fines de lucro</strong> y está dirigido a programadores novicios que buscan una API para practicar
+                        habilidades de programación. Inspirado por la API de <em>Rick and Morty</em>, esta API busca aportar un pequeño grano de arena al
+                        mundo del desarrollo.
+                    </p>
+                    <p>
+                        La API está desarrollada en <strong>Python</strong> con <strong>FastAPI</strong>, ejecutable localmente con <strong>Uvicorn</strong>.
+                        En la Wiki/Docs encontrarás detalles de endpoints y ejemplos para jugar con ella. Abajo te dejo accesos directos:
+                    </p>
+
+                    <div class="hero-ctas">
+                        <a href="https://github.com/KPBaldur/ApiRegularShow" class="btn" target="_blank">Repositorio</a>
+                        <a href="https://apiregularshow.onrender.com/openapi.json" class="btn outline" target="_blank">OpenAPI</a>
+                        <a href="https://kpbaldur.github.io/RegularShowWiki/docs" class="btn" target="_blank">Docs de la Wiki</a>
+                    </div>
+
+                    <small class="hero-note">
+                        Nota: Esta web es una <strong>demostración</strong> de lo que se puede construir con la API y está en crecimiento
+                        (en especial la información de personajes).
+                    </small>
+                </section>
+            
             <section class="posts">
-                <article>
-                    <h2>Regular Show API wiki</h2>
-                    <p>Bienvenidos a la Wiki de Regular Show, aqui podras encontrar todo lo relacionado a la serie animada creada por J.G. Quintel, desde sus personajes, episodios, comics,
-                    peliculas, curiosidades y mucho mas, todo lo que necesitas saber sobre la serie animada que marco una generacion y que se volvio un clasico de Cartoon Network.
-                    </p>
-                    <p>La serie gira entorno a dos amigos Mordecai y Rigby que encuentran empleo en el parque como cuidadores, 
-                    ambos enfrentaran diversas peculiaridades, aventuras y peleas con entes cosmicos y multiversales junto con sus
-                    compañeros de trabajo Musculoso, Fantasmano, Skips, Papaleta y su jefe del trabajo Benson.
-                    </p>
 
-                    <p>Con un estilo retro de los 80, nuestros protagonistas se daran cuenta que no podran disfrutar de su tranquilidad
-                    al dia a dia, un simple trabajo en el parque o una cita romantica, desencadenara una lista larga o corta cadena de hechos
-                    que pondran su vida en riesgo.
-                    </p>
-
-                    <p>Con 261 episodios, con algunos sin trama continua, Un Show Mas nos entregara una experiencia unica, con una formula
-                    nunca antes vista, con guiños a la cultura retro, y que tambien lograremos ver la evolucion de la tecnologia como podremos ver
-                    en el capitulo "La Guerra de los Formatos" 1 y 2.
-                    </p>
-
-                    <p>Un Show mas nos da un antes y despues de las caricaturas, con un inicio unico y humoristico y con un final reconfortante, nostalgico 
-                    y que segun el IMDb esta entre los mejores finales de caricatura de la television.
-                    </p>
-                </article>
+                
+                
 
                 <!--###################################################-->
                 <!------------------SEPARADOR DE CONTENIDO---------------> <br><hr><br>
                 <!--###################################################-->
                 
-
-                <article>
-                    <h2>El Piloto</h2>
-                    <p>En su primer episodio oficial que se se estreno el 14 de agosto del 2009 (13 años ya) el cual como se puede apreciar a lo largo del capitulo
-                    la animacion que se muestra es muy distinta, pero tiene el mismo recorrido de trama que tiene el resto de las temporadas siguientes.
-                    </p>
-
-                    <p>Su primer capitulo nos muestra la primera aparicion de todos los personajes principales y secundarios, Mordecai y Rigby se enfrentan en un duelo
-                    de piedra papel y tijeras para decirid quien se queda con un sofa para ellos el cual se encuentra en un empate infitino 
-
-                    </p>
-
-                    <div class="images-piloto">
-                        <img width="100%" src="img/un-show-mas-piloto.jpg" alt="">
-                        <img width="100%" src="img/un-show-mas-piloto02.jpg" alt="">
-                        <img width="100%" src="img/un-show-mas-piloto03.jpg" alt="">
-                        <img width="100%" src="img/un-show-mas-piloto04.jpg" alt="">
-                    </div>
-                </article>
+                <div data-include="partials/piloto.html"></div>
 
                 <!--###################################################-->
                 <!------------------SEPARADOR DE CONTENIDO---------------> <br><hr><br>
@@ -106,72 +97,107 @@
                 <!------------------SEPARADOR DE CONTENIDO---------------> <br><hr><br>
                 <!--###################################################-->
 
-                <article>
-                    <h2>¿Donde Ver Regular Show?</h2>
-                    <br>
-                    <p>Sabemos que desde que Cartoon Network dejo de emitir la serie por su transmicion, hubo un gran incremento por parte de los fans en busqueda
-                    de formas para poder seguir viendo la serie.
-
-                    Aqui dejamos algunas formas de pago y alternativas para poder disfrutar de nuestra amada serie alocada.
-                    </p>
-                    <br>
-                    <hr>
-                    <br>
-                    <div class="botonera-plataformas">
-
-                        <a class="boton-hbomax" href="https://play.hbomax.com/page/urn:hbo:page:GXl20QAK1sTC3wwEAAB4I:type:series" target="_blank"><img src="img/hbomax.jpg" alt="hboMax"></a>
-                        
-                        <a class="boton-hbomax" href="https://tv.apple.com/us/show/un-show-mas/umc.cmc.2fafy2w7b0fkcnbadq9guk3gc?l=es" target="_blank"><img src="img/apple-tv.jpg" alt="apple-tv"></a>
-                        
-                        <a class="boton-hbomax" href="https://www.primevideo.com/detail/UN-SHOW-MÁS/0O7330LFW7KLV9Z3PKUO1TL9OL" target="_blank"><img src="img/primevideo.jpg" alt="prime-video"></a>
-
-                        <a class="boton-hbomax" href="https://cuevana3.tube/series/un-show-mas/" target="_blank"><img src="img/cuevana.jpg" alt="cuevana"></a>
-
-                        <a class="boton-hbomax" href="https://www.lacartoons.com/serie/376" target="_blank"><img src="img/Lacartoons.jpg" alt="la-cartoons"></a>
-                    </div>
-                    <br>
-
-                    <p>Una curiosidad con respecto a las plataformas de pago disponibles para poder ver la serie, es que en ninguna aparece el episodio Polito de la serie
-                    con el cual se mostro al publico en sus inicios por alla en 2010.
-                    </p>
-
-                    <p>Las plataformas de PrimeVideo, HboMax cuentan con solo 12 capitulos de la primera temporada mienstras que en AppleTV cuenta con 20 capitulos,
-                    mientras que en las plataformas de no pago Cuevana cuenta tambien solo con 12 episodios, solo LACartoons cuenta con los 30 episodios de la primera temporada.</p>
-                </article>
+                <div data-include="partials/donde-ver.html"></div>
 
             </section>     
         </section>
 
-        <aside>
-            <div class="widget">
-                <div class="imagen">
-                    <img src="img/Elgrupo.jpg" alt="">
-                </div>
-                <h3 class="titulo">Regular Show</h3><br>
-                <p>Un Show mas (Historias corrientes en España y Regular Show en ingles) es una serie animada estadounidense creada por <a href="https://es.wikipedia.org/wiki/J._G._Quintel" target="_blank">J.G. Quintel.</a><br><br>
-                Fue aprobada el 13 de agosto de 2009 por <a href="https://es.wikipedia.org/wiki/Cartoon_Network" target="_blank">Cartoon Netwowrk</a> en su episodio piloto
-                y se estreno en Latinoamerica el 11 de Agosto del 2010.<br><br>
-                Con 8 temporadas de 261 episodios una Pelicula, 40 comics de Mordecai y Rigby mas 6 tomos especiales de Skips y con 7 premios Emmy por Mejor serie animada,
-                Un show mas se volvio una de las series mas vistas y populares de Cartoon Network, ganando un puesto como un clasico y una serie muy querida por todos quienes la vieron.</p>
-            </div>
-
-            <div class="widget">
-                <h3 class="titulo">Articulos Destacados</h3>
-                <ul>
-                    <li><a href="top-imdb.html">TOP 10 Capitulos segun IMDb</a></li>
-                    <li><a href="">TOP 10 Canciones musicales</a></li>
-                    <li><a href="cap-final.html">El final de la serie</a></li>
-                </ul>
-            </div>    
-        </aside>
+        <div data-include="partials/aside.html"></div>
 
         <footer>
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
+    <script>
+        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
+        document.addEventListener("DOMContentLoaded", async () => {
+            const targets = document.querySelectorAll("[data-include]");
+            await Promise.all([...targets].map(async el => {
+            const url = el.getAttribute("data-include");
+            try {
+                const res = await fetch(url, { cache: "no-cache" });
+                el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
+            } catch (e) {
+                el.innerHTML = `<p>Error cargando: ${url}</p>`;
+                console.error(e);
+            }
+            }));
+        });
+    </script>
+
     <script src="cargarPersonajes.js"></script>
     <script src="https://kit.fontawesome.com/b918cc0237.js" crossorigin="anonymous"></script>
     
+    <script> // ELIMINAR ESTA SECCION, SOLO ES DE PRUEBAS.
+        // Cargar personajes principales
+
+            // Antes de fetch:
+            contenedor.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
+
+            // En catch:
+            contenedor.innerHTML = '<p class="error">No se pudieron cargar los personajes. Intenta más tarde.</p>';
+
+
+            async function cargarPersonajesPrincipales() {
+                try {
+                    const response = await fetch("https://apiregularshow.onrender.com/personajes/principales");
+                    const personajes = await response.json();
+
+                    const contenedor = document.getElementById("personajes-principales");
+                    contenedor.className = "contenedor-personajes";
+
+                    personajes.forEach(p => {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.innerHTML = `
+                            <img src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
+                            <h2>${p.nombre}</h2>
+                            <p class="stats">
+                                <span>Raza</span> <span>${p.raza}</span><br>
+                                <span>Profesión</span> <span>${p.profesion}</span><br>
+                            </p>
+                        `;
+                        contenedor.appendChild(card);
+                    });
+                } catch (error) {
+                    console.error("Error al cargar personajes principales:", error);
+                }
+            }
+
+            // Cargar personajes aleatorios
+            async function cargarPersonajesAleatorios() {
+                try {
+                    const response = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6");
+                    const personajes = await response.json();
+
+                    const contenedor = document.getElementById("personajes-dinamicos");
+                    contenedor.className = "contenedor-personajes";
+
+                    personajes.forEach(p => {
+                        const card = document.createElement("div");
+                        card.className = "card";
+                        card.innerHTML = `
+                            <img src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
+                            <h2>${p.nombre}</h2>
+                            <p class="stats">
+                                <span>Raza</span> <span>${p.raza}</span><br>
+                                <span>Profesión</span> <span>${p.profesion}</span><br>
+                            </p>
+                        `;
+                        contenedor.appendChild(card);
+                    });
+                } catch (error) {
+                    console.error("Error al cargar personajes aleatorios:", error);
+                }
+            }
+
+            // Ejecutar ambos al cargar la página
+            window.addEventListener("DOMContentLoaded", () => {
+                cargarPersonajesPrincipales();
+                cargarPersonajesAleatorios();
+            });
+
+    </script> <!-- ELIMINAS HASTA AQUI -->
 
 </body>
 </html>
