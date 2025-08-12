@@ -1,4 +1,12 @@
 // Cargar personajes principales
+
+// Antes de fetch:
+contenedor.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
+
+// En catch:
+contenedor.innerHTML = '<p class="error">No se pudieron cargar los personajes. Intenta más tarde.</p>';
+
+
 async function cargarPersonajesPrincipales() {
     try {
         const response = await fetch("https://apiregularshow.onrender.com/personajes/principales");
