@@ -169,54 +169,82 @@ header nav ul li a:hover {
 /*-------------TARJETA DE PERSONAJE------------*/
 /*#############################################*/
 
-
-.card {
-    width: 25%;
-    height: 350px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    overflow: hidden;
-    margin: 20px;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  .card img {
-    width: 100%;
-    height: 150px;
-    object-fit:cover ;
-    position: relative;
-  }
-  
-  .card h2 {
-    padding: 5px;
-    font-size: 22px;
-  }
-  
-  .card p {
-    padding: 5px;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .card .stats {
-    font-size: 18px;
-    color: #333;
-    margin-top: 20px;
-  }
-  
-  .card .stats span:first-child {
-    font-weight: bold;
-  }
-  
-#episodios-container .card {
-    border: 2px solid #f39c12;
+.contenedor-personajes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3 columnas base */
+  gap: 20px;
+  align-items: stretch;
 }
 
+/* ======== GRID DE PERSONAJES ======== */
+.grid-personajes {
+  /* ocupa el 100% del ancho disponible del área de posts */
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(280px, 1fr) );
+  gap: 20px;
+  align-items: stretch;
+}
+
+
+/* ======== TARJETA DE PERSONAJE ======== */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .2s ease;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
+}
+
+/* Encabezado de imagen con tamaño estandarizado */
+.card__media {
+  /* Estándar visual: todas las imágenes tienen la misma “caja” */
+  aspect-ratio: 4 / 3;         /* puedes cambiar a 1/1 si prefieres cuadrado */
+  background: #fff;
+  display: block;
+  overflow: hidden;
+}
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;          /* o 'cover' si prefieres recortar para llenar */
+  display: block;
+}
+
+/* Contenido */
+.card__body {
+  padding: 14px 16px 16px;
+  display: grid;
+  gap: 6px;
+}
+.card__title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 4px 0;
+}
+.card__meta {
+  display: grid;
+  gap: 6px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.card__meta b {
+  color: #111;
+}
+
+.card__meta .row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
 
 /*-------------ASIDE------------*/
 /*##############################*/
@@ -315,4 +343,38 @@ footer {
     .main .botonera-plataformas .boton-hbomax img {
         width: 50%;
     }
+    .contenedor-personajes {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-personajes {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    
+    .card__media {
+        aspect-ratio: auto;   /* cancelamos el alto fijo */
+        width: 42%;           /* imagen a la izquierda */
+        min-height: 180px;    /* altura agradable en móvil */
+    }
+    
+    .card__body {
+        width: 58%;
+        padding: 14px;
+    }
+}
+
+/* 2 columnas <=1000px */
+@media (max-width: 1000px) {
+  .contenedor-personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
