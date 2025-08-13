@@ -1,59 +1,59 @@
-// Cargar personajes principales
+function tarjetaPersonaje(p) {
+  const img = p.imagen_url || "img/placeholder.png";
+  const raza = p.raza || "Desconocida";
+  const profesion = p.profesion || "Desconocida";
+  const estado = p.estado || "Desconocido";
+  const aparicion = p.capitulo_aparicion || "—";
+
+  return `
+    <div class="card">
+      <div class="card__media">
+        <img class="card__img" src="${img}" alt="${p.nombre}">
+      </div>
+      <div class="card__body">
+        <h3 class="card__title">${p.nombre}</h3>
+        <div class="card__meta">
+          <div><b>Raza:</b> ${raza}</div>
+          <div><b>Profesión:</b> ${profesion}</div>
+          <div><b>Estado:</b> ${estado}</div>
+          <div><b>Aparición:</b> ${aparicion}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ---------- PRINCIPALES ----------
 async function cargarPersonajesPrincipales() {
-    try {
-        const response = await fetch("https://apiregularshow.onrender.com/personajes/principales");
-        const personajes = await response.json();
+  try {
+    const resp = await fetch("https://apiregularshow.onrender.com/personajes/principales");
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const personajes = await resp.json();
 
-        const contenedor = document.getElementById("personajes-principales");
-        contenedor.className = "contenedor-personajes";
-
-        personajes.forEach(p => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <img src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
-                <h2>${p.nombre}</h2>
-                <p class="stats">
-                    <span>Raza</span> <span>${p.raza}</span><br>
-                    <span>Profesión</span> <span>${p.profesion}</span><br>
-                </p>
-            `;
-            contenedor.appendChild(card);
-        });
-    } catch (error) {
-        console.error("Error al cargar personajes principales:", error);
-    }
+    const cont = document.getElementById("personajes-principales");
+    cont.className = "contenedor-personajes"; // usa el alias de grid
+    cont.innerHTML = personajes.map(tarjetaPersonaje).join("");
+  } catch (err) {
+    console.error("Error al cargar personajes principales:", err);
+  }
 }
 
-// Cargar personajes aleatorios
+// ---------- ALEATORIOS ----------
 async function cargarPersonajesAleatorios() {
-    try {
-        const response = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6");
-        const personajes = await response.json();
+  try {
+    const resp = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6");
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const personajes = await resp.json();
 
-        const contenedor = document.getElementById("personajes-dinamicos");
-        contenedor.className = "contenedor-personajes";
-
-        personajes.forEach(p => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <img src="${p.imagen_url}" alt="Imagen de ${p.nombre}">
-                <h2>${p.nombre}</h2>
-                <p class="stats">
-                    <span>Raza</span> <span>${p.raza}</span><br>
-                    <span>Profesión</span> <span>${p.profesion}</span><br>
-                </p>
-            `;
-            contenedor.appendChild(card);
-        });
-    } catch (error) {
-        console.error("Error al cargar personajes aleatorios:", error);
-    }
+    const cont = document.getElementById("personajes-dinamicos");
+    cont.className = "contenedor-personajes"; // usa el alias de grid
+    cont.innerHTML = personajes.map(tarjetaPersonaje).join("");
+  } catch (err) {
+    console.error("Error al cargar personajes aleatorios:", err);
+  }
 }
 
-// Ejecutar ambos al cargar la página
 window.addEventListener("DOMContentLoaded", () => {
-    cargarPersonajesPrincipales();
-    cargarPersonajesAleatorios();
+  cargarPersonajesPrincipales();
+  cargarPersonajesAleatorios();
 });
