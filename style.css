@@ -322,6 +322,19 @@ footer {
 /*-------------MEDIAQUERY------------*/
 /*###################################*/
 
+
+
+/* 2 columnas <=1000px */
+@media (max-width: 1000px) {
+  .contenedor-personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-personajes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media screen and (max-width:800px) {
     .main {
         width: 100%;
@@ -366,15 +379,4 @@ footer {
         width: 58%;
         padding: 14px;
     }
-}
-
-/* 2 columnas <=1000px */
-@media (max-width: 1000px) {
-  .contenedor-personajes {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-personajes {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
