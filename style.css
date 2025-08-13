@@ -126,30 +126,23 @@ header nav ul li a:hover {
 /*-------------CONTENT HERO ------------*/
 /*#############################################*/
 /* ====== HERO (bienvenida) ====== */
-.hero {
-  padding: 32px;
-  background: linear-gradient(180deg, #fff 0%, #f7f7f7 100%);
-  border: 1px solid #eee;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.04);
-  margin: 24px 0 16px;
-}
-.hero h1 {
+
+.main .posts h1 {
   font-size: 2rem;
   color: #424242;
   margin-bottom: 12px;
 }
-.hero p {
+.main .posts p {
   line-height: 1.6;
   margin-bottom: 12px;
 }
-.hero-ctas {
+.main .posts .hero-ctas {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin: 12px 0 8px;
 }
-.btn {
+.main .posts .btn {
   display: inline-block;
   padding: 10px 14px;
   border-radius: 10px;
@@ -159,14 +152,14 @@ header nav ul li a:hover {
   border: 1px solid #0099e5;
   transition: transform .06s ease-in, background .2s ease-in-out;
 }
-.btn:hover { transform: translateY(-1px); background: #037fbe; }
-.btn.outline {
+.main .posts .btn:hover { transform: translateY(-1px); background: #037fbe; }
+.main .posts .btn.outline {
   background: #fff;
   color: #0099e5;
   border-color: #0099e5;
 }
-.btn.outline:hover { background: #eaf6fd; }
-.hero-note {
+.main .posts .btn.outline:hover { background: #eaf6fd; }
+.main .posts .hero-note {
   color: #666;
   display: block;
   margin-top: 2px;
