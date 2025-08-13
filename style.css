@@ -213,6 +213,10 @@ header nav ul li a:hover {
     font-weight: bold;
   }
   
+#episodios-container .card {
+    border: 2px solid #f39c12;
+}
+
 
 /*-------------ASIDE------------*/
 /*##############################*/
