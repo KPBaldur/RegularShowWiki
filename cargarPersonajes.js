@@ -1,8 +1,4 @@
 // Cargar personajes principales
-
-
-
-
 async function cargarPersonajesPrincipales() {
     try {
         const response = await fetch("https://apiregularshow.onrender.com/personajes/principales");
