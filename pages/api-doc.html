@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <title>Regular Show Wiki</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="img/logoregularshow.png" alt="">
+    </div>
+
+    <div class="contenedor">
+
+        <!--###################################################-->
+        <!--------------------------HEADER----------------------->
+        <!--###################################################-->
+        <div data-include="../partials/header.html"></div>
+        
+
+        <section class="main">
+            <div class="imagen-desktop">
+                <img src="../img/Home-Desktop.jfif" alt="">
+            </div>            
+            <section class="posts">
+                <section class="hero">
+                    <h1>Regular Show API</h1>
+                    
+                </section>
+
+                <!--###################################################-->
+                <!------------------------El Piloto----------------------> <br><hr><br>
+                <!--###################################################-->
+                
+                
+
+                <!--###################################################-->
+                <!----------------------LOS PERSONAJES-------------------> <br><hr><br>
+                <!--###################################################-->
+                
+                
+
+                <!--###################################################-->
+                <!----------------------LOS CAPITULOS--------------------> <br><hr><br>
+                <!--###################################################-->
+
+                
+
+                <!--###################################################-->
+                <!------------------------DONDE VER----------------------> <br><hr><br>
+                <!--###################################################-->
+
+
+            </section>     
+        </section>
+
+        <!--###################################################-->
+        <!---------------------------ASIDE----------------------->
+        <!--###################################################-->
+
+        <div data-include="../partials/aside.html"></div>
+
+
+
+        <footer>
+            <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
+        </footer>
+    </div>
+    <script>
+        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
+        document.addEventListener("DOMContentLoaded", async () => {
+            const targets = document.querySelectorAll("[data-include]");
+            await Promise.all([...targets].map(async el => {
+            const url = el.getAttribute("data-include");
+            try {
+                const res = await fetch(url, { cache: "no-cache" });
+                el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
+            } catch (e) {
+                el.innerHTML = `<p>Error cargando: ${url}</p>`;
+                console.error(e);
+            }
+            }));
+        });
+    </script>
+
+    <script src="cargarPersonajes.js"></script>
+    <script src="cargaEpisodios.js"></script>
+    <script src="https://kit.fontawesome.com/b918cc0237.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
