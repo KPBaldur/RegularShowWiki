@@ -1,98 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
-    <title>Regular Show Wiki</title>
-</head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Fuentes + estilos base del sitio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css"><!-- si mueves este archivo a raíz: usar "style.css" -->
+
+  <!-- Swagger UI (CDN) -->
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+
+  <!-- Overrides para que Swagger combine con tu tema -->
+  <style>
+
+    .main {
+      width: 100%;
+      background: #fff;
+      float: left;
+    }
+    /* Oculta topbar azul de Swagger */
+    .topbar { display: none; }
+
+    /* Contenedor propio (seguimos tu grid con .contenedor/.main/.posts) */
+    .swagger-wrap {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Tipografía y suavizados acorde al sitio */
+    .swagger-ui, .swagger-ui * {
+      font-family: 'Comic Neue', cursive, 'Open-Sans', Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: .2px;
+    }
+
+    /* Colores de acento (usa tu celeste) */
+    :root {
+      --rs-primary: #0099e5;
+      --rs-primary-dk: #037fbe;
+      --rs-border: #e7e7e7;
+      --rs-bg-muted: #fafafa;
+    }
+
+    /* Títulos y enlaces */
+    .swagger-ui .info .title { color: #222; }
+    .swagger-ui .info a { color: var(--rs-primary); text-decoration: none; }
+    .swagger-ui .info a:hover { text-decoration: underline; }
+
+    /* Botones principales */
+    .swagger-ui .btn,
+    .swagger-ui .opblock-control-arrow,
+    .swagger-ui .authorize__btn {
+      border-radius: 10px !important;
+      border: 1px solid var(--rs-primary) !important;
+      background: var(--rs-primary) !important;
+      color: #fff !important;
+      transition: transform .06s ease-in, background .2s ease-in-out;
+    }
+    .swagger-ui .btn:hover { transform: translateY(-1px); background: var(--rs-primary-dk) !important; }
+
+    /* Inputs y selects */
+    .swagger-ui input[type=text],
+    .swagger-ui select,
+    .swagger-ui textarea {
+      border-radius: 10px !important;
+      border: 1px solid var(--rs-border) !important;
+      box-shadow: none !important;
+    }
+
+    /* Paneles y bordes suaves */
+    .swagger-ui .scheme-container,
+    .swagger-ui .opblock,
+    .swagger-ui .info,
+    .swagger-ui .models {
+      border: 1px solid var(--rs-border);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .swagger-ui .opblock { margin: 10px 0; }
+
+    /* “GET” en color de marca */
+    .swagger-ui .opblock.opblock-get .opblock-summary-method {
+      background: var(--rs-primary) !important;
+      border-radius: 8px;
+    }
+    .swagger-ui .opblock.opblock-get .opblock-summary {
+      border-left-color: var(--rs-primary) !important;
+    }
+
+    /* Etiquetas/Tags */
+    .swagger-ui .opblock-tag {
+      border-bottom: 1px solid var(--rs-border);
+      padding: 10px 16px;
+    }
+
+    /* Código (try-it-out / response) */
+    .swagger-ui .response-col_status { font-weight: 700; }
+    .swagger-ui .model-box-control,
+    .swagger-ui .opblock-summary-control { color: #666; }
+
+    /* Ancho fluido dentro de .posts (sin aside) */
+    .page-full { max-width: 100%; margin: 0; padding: 0; }
+
+    footer {
+      width: 100%;
+      background: #000;
+      clear: both;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+    }
+  </style>
+
+  <title>Regular Show API – Docs</title>
+</head>
 <body>
 
-    <div class="header">
-        <img src="img/logoregularshow.png" alt="">
-    </div>
+  <!-- Header superior del sitio -->
+  <div class="header">
+    <img src="../img/logoregularshow.png" alt="Regular Show">
+  </div>
 
-    <div class="contenedor">
+  <div class="contenedor">
+    <!-- NAV -->
+    <div data-include="../partials/header.html"></div>
 
-        <!--###################################################-->
-        <!--------------------------HEADER----------------------->
-        <!--###################################################-->
-        <div data-include="../partials/header.html"></div>
-        
+    <!-- MAIN (mantenemos tu misma estructura visual) -->
+    <section class="main">
+      <div class="imagen-desktop">
+        <img src="../img/Home-Desktop.jfif" alt="">
+      </div>
 
-        <section class="main">
-            <div class="imagen-desktop">
-                <img src="../img/Home-Desktop.jfif" alt="">
-            </div>            
-            <section class="posts">
-                <section class="hero">
-                    <h1>Regular Show API</h1>
-                    
-                </section>
-
-                <!--###################################################-->
-                <!------------------------El Piloto----------------------> <br><hr><br>
-                <!--###################################################-->
-                
-                
-
-                <!--###################################################-->
-                <!----------------------LOS PERSONAJES-------------------> <br><hr><br>
-                <!--###################################################-->
-                
-                
-
-                <!--###################################################-->
-                <!----------------------LOS CAPITULOS--------------------> <br><hr><br>
-                <!--###################################################-->
-
-                
-
-                <!--###################################################-->
-                <!------------------------DONDE VER----------------------> <br><hr><br>
-                <!--###################################################-->
-
-
-            </section>     
+      <section class="posts">
+        <section class="hero">
+          <h1>Regular Show API – Documentación y Playground</h1>
+          <p>
+            Explora y prueba los endpoints de la API (cargados desde <code>openapi.json</code>), con ejemplos y
+            <strong>Try it out</strong> integrado.
+          </p>
         </section>
 
-        <!--###################################################-->
-        <!---------------------------ASIDE----------------------->
-        <!--###################################################-->
+        <!-- Swagger, a pantalla completa dentro del área de posts -->
+        <div class="swagger-wrap page-full">
+          <div id="swagger-ui"></div>
+        </div>
+      </section>
+    </section>
 
-        <div data-include="../partials/aside.html"></div>
+    <!-- ❌ SIN ASIDE EN ESTA PÁGINA para usar 100% del ancho de .main -->
 
+    <footer>
+      <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
+    </footer>
+  </div>
 
+  <!-- Swagger UI JS -->
+  <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script>
+    // Usa PROD por defecto; si quieres local, cambia la constante:
+    const SPEC_URL = "https://apiregularshow.onrender.com/openapi.json";
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: SPEC_URL,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        tryItOutEnabled: true,
+        displayRequestDuration: true,
+        docExpansion: 'none',
+        presets: [SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout"
+      });
+    };
+  </script>
 
-        <footer>
-            <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
-        </footer>
-    </div>
-    <script>
-        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
-        document.addEventListener("DOMContentLoaded", async () => {
-            const targets = document.querySelectorAll("[data-include]");
-            await Promise.all([...targets].map(async el => {
-            const url = el.getAttribute("data-include");
-            try {
-                const res = await fetch(url, { cache: "no-cache" });
-                el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
-            } catch (e) {
-                el.innerHTML = `<p>Error cargando: ${url}</p>`;
-                console.error(e);
-            }
-            }));
-        });
-    </script>
-
-    <script src="cargarPersonajes.js"></script>
-    <script src="cargaEpisodios.js"></script>
-    <script src="https://kit.fontawesome.com/b918cc0237.js" crossorigin="anonymous"></script>
-
+  <!-- loader de partials (igual que en index) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const targets = document.querySelectorAll("[data-include]");
+      await Promise.all([...targets].map(async el => {
+        const url = el.getAttribute("data-include");
+        try {
+          const res = await fetch(url, { cache: "no-cache" });
+          el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
+        } catch (e) {
+          el.innerHTML = `<p>Error cargando: ${url}</p>`;
+          console.error(e);
+        }
+      }));
+    });
+  </script>
 </body>
 </html>
