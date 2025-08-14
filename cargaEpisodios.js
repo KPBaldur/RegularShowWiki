@@ -29,6 +29,10 @@ function tarjetaEpisodio(ep) {
   const img = ep.imagen_url || "img/placeholder-episodio.jpg";
   const fecha = ep.fecha_estreno || "Desconocido";
   const score = (ep.imdb_score ?? "N/A");
+  const nroEpisodio = (ep.numero ?? ep.capitulo ?? "");
+  const nroFmt = String(nroEpisodio).padStart(2, "0");
+
+  const temporadaFmt = String(ep.temporada ?? "").padStart(2, "0");
   return `
     <article class="episode-card">
       <div class="episode-card__media">
@@ -37,7 +41,8 @@ function tarjetaEpisodio(ep) {
       <div class="episode-card__body">
         <div class="episode-card__title"><b>Nombre Capítulo:</b> ${ep.titulo}</div>
         <ul class="episode-card__meta">
-          <li><b>Temporada:</b> ${String(ep.temporada).padStart(2, "0")}</li>
+          <li><b>Temporada:</b> ${temporadaFmt}</li>
+          <li><b>Capitulo:</b> ${nroFmt}</li>
           <li><b>Estreno:</b> ${fecha}</li>
           <li><b>Puntuación IMDb:</b> ${score}</li>
         </ul>
