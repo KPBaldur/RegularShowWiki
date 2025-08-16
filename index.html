@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        (function () {
+            // Nombre de tu repo en GitHub Pages (Project Pages)
+            var repo = "RegularShowWiki";
+
+            // ¿Estamos en *.github.io? Si sí, prefiere /<repo>/ como base.
+            var isGhPages = location.hostname.endsWith("github.io");
+
+            // base final con slash al final
+            var base = isGhPages ? (location.origin + "/" + repo + "/")
+                                : (location.origin + "/");
+
+            // Inyecta <base> antes de que el navegador resuelva URLs relativas
+            var el = document.createElement("base");
+            el.href = base;
+            document.head.prepend(el);
+
+            // (Opcional) Exponer por si quieres usarlo en scripts
+            window.__SITE_BASE__ = base;
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
