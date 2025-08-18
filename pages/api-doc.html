@@ -10,113 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css"><!-- si mueves este archivo a raíz: usar "style.css" -->
+  <link rel="stylesheet" href="../css/api-doc-css.css">
 
   <!-- Swagger UI (CDN) -->
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
-
-  <!-- Overrides para que Swagger combine con tu tema -->
-  <style>
-
-    .main {
-      width: 100%;
-      background: #fff;
-      float: left;
-    }
-    /* Oculta topbar azul de Swagger */
-    .topbar { display: none; }
-
-    /* Contenedor propio (seguimos tu grid con .contenedor/.main/.posts) */
-    .swagger-wrap {
-      border: 1px solid #eee;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    /* Tipografía y suavizados acorde al sitio */
-    .swagger-ui, .swagger-ui * {
-      font-family: 'Comic Neue', cursive, 'Open-Sans', Roboto, Helvetica, Arial, sans-serif;
-      letter-spacing: .2px;
-    }
-
-    /* Colores de acento (usa tu celeste) */
-    :root {
-      --rs-primary: #0099e5;
-      --rs-primary-dk: #037fbe;
-      --rs-border: #e7e7e7;
-      --rs-bg-muted: #fafafa;
-    }
-
-    /* Títulos y enlaces */
-    .swagger-ui .info .title { color: #222; }
-    .swagger-ui .info a { color: var(--rs-primary); text-decoration: none; }
-    .swagger-ui .info a:hover { text-decoration: underline; }
-
-    /* Botones principales */
-    .swagger-ui .btn,
-    .swagger-ui .opblock-control-arrow,
-    .swagger-ui .authorize__btn {
-      border-radius: 10px !important;
-      border: 1px solid var(--rs-primary) !important;
-      background: var(--rs-primary) !important;
-      color: #fff !important;
-      transition: transform .06s ease-in, background .2s ease-in-out;
-    }
-    .swagger-ui .btn:hover { transform: translateY(-1px); background: var(--rs-primary-dk) !important; }
-
-    /* Inputs y selects */
-    .swagger-ui input[type=text],
-    .swagger-ui select,
-    .swagger-ui textarea {
-      border-radius: 10px !important;
-      border: 1px solid var(--rs-border) !important;
-      box-shadow: none !important;
-    }
-
-    /* Paneles y bordes suaves */
-    .swagger-ui .scheme-container,
-    .swagger-ui .opblock,
-    .swagger-ui .info,
-    .swagger-ui .models {
-      border: 1px solid var(--rs-border);
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-    }
-    .swagger-ui .opblock { margin: 10px 0; }
-
-    /* “GET” en color de marca */
-    .swagger-ui .opblock.opblock-get .opblock-summary-method {
-      background: var(--rs-primary) !important;
-      border-radius: 8px;
-    }
-    .swagger-ui .opblock.opblock-get .opblock-summary {
-      border-left-color: var(--rs-primary) !important;
-    }
-
-    /* Etiquetas/Tags */
-    .swagger-ui .opblock-tag {
-      border-bottom: 1px solid var(--rs-border);
-      padding: 10px 16px;
-    }
-
-    /* Código (try-it-out / response) */
-    .swagger-ui .response-col_status { font-weight: 700; }
-    .swagger-ui .model-box-control,
-    .swagger-ui .opblock-summary-control { color: #666; }
-
-    /* Ancho fluido dentro de .posts (sin aside) */
-    .page-full { max-width: 100%; margin: 0; padding: 0; }
-
-    footer {
-      width: 100%;
-      background: #000;
-      clear: both;
-      color: #fff;
-      padding: 15px 0;
-      text-align: center;
-    }
-  </style>
 
   <title>Regular Show API – Docs</title>
 </head>
@@ -155,7 +52,116 @@
           <p>
             Explora y prueba los endpoints de la API (cargados desde <code>openapi.json</code>), con ejemplos y
             <strong>Try it out</strong> integrado.
-          </p>
+            La API es pública, sin autenticación, y responde en <code>JSON</code>. Ideal para practicar
+            consumo de API desde front o backend. Abajo tienes un resumen de endpoints, formatos de ID y ejemplos.
+          </p><br>
+
+          <h1 style="margin-top:0">Regular Show API – Guía rápida de uso</h1>
+
+          <h2>Base URL</h2>
+          <br>
+          <pre><code>https://apiregularshow.onrender.com</code></pre>
+          <br>
+
+          <h2>Formatos de ID</h2>
+            <table style="width:100%;border-collapse:collapse">
+              <thead>
+                <tr>
+                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Recurso</th>
+                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Prefijo</th>
+                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Ejemplo</th>
+                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Notas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:6px 4px">Personajes</td>
+                  <td style="padding:6px 4px"><code>CHARCT</code></td>
+                  <td style="padding:6px 4px"><code>CHARCT001</code></td>
+                  <td style="padding:6px 4px">IDs alfanuméricos, 3 dígitos con cero a la izquierda</td>
+                </tr>
+                <tr>
+                  <td style="padding:6px 4px">Capítulos</td>
+                  <td style="padding:6px 4px"><code>CAP</code></td>
+                  <td style="padding:6px 4px"><code>CAP001</code></td>
+                  <td style="padding:6px 4px">Incluye temporada, número, sinopsis e <code>imdb_score</code></td>
+                </tr>
+                <tr>
+                  <td style="padding:6px 4px">Temporadas</td>
+                  <td style="padding:6px 4px"><code>TEMP</code></td>
+                  <td style="padding:6px 4px"><code>TEMP01</code></td>
+                  <td style="padding:6px 4px">Devuelve también <b>numero_capitulos</b> y <b>promedio_imdb</b></td>
+                </tr>
+                <tr>
+                  <td style="padding:6px 4px">Cómics</td>
+                  <td style="padding:6px 4px"><code>COMC</code></td>
+                  <td style="padding:6px 4px"><code>COMC001</code></td>
+                  <td style="padding:6px 4px">Campos: autores, ilustradores, tipo, publicación…</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <br><hr><br>
+
+            <h2>Parámetros comunes</h2>
+            <ul>
+              <li><code>?limit=&lt;n&gt;</code> — cuántos ítems devolver (útil para paginar).</li>
+              <li><code>?skip=&lt;n&gt;</code> — cuántos ítems omitir desde el inicio (siguiente página).</li>
+            </ul>
+            <div style="background:#eaf6fd;border:1px solid #cfe9fb;border-radius:10px;padding:10px;margin:10px 0">
+              <b>Tip:</b> para recorrer páginas usa <code>?limit=20&amp;skip=0</code>, luego <code>?limit=20&amp;skip=20</code>, etc.
+            </div>
+
+            <br><hr><br>
+
+            <h2>Endpoints por recurso</h2><br>
+
+            <h3>Personajes</h3>
+            <ul>
+              <li><code>GET /personajes</code> — lista paginada.</li>
+              <li><code>GET /personajes/{id}</code> — detalle por ID (p.ej. <code>CHARCT001</code>).</li>
+              <li><code>GET /personajes/principales</code> — elenco principal.</li>
+              <li><code>GET /personajes/aleatorio/{n}</code> — <em>n</em> personajes aleatorios.</li>
+            </ul><br>
+
+            <h3>Capítulos</h3>
+            <ul>
+              <li><code>GET /capitulos</code> — lista (campos: <code>id</code>, <code>titulo</code>, <code>numero</code>, <code>temporada</code>, <code>fecha_estreno</code>, <code>imdb_score</code>, <code>sinopsis</code>, <code>imagen_url</code>…)</li>
+              <li><code>GET /capitulos/{id}</code> — detalle por ID (p.ej. <code>CAP001</code>).</li>
+            </ul><br>        
+
+            <h3>Temporadas</h3>
+            <ul>
+              <li><code>GET /temporadas</code> — lista con agregados <b>numero_capitulos</b> y <b>promedio_imdb</b>.</li>
+              <li><code>GET /temporadas/{id}</code> — detalle por ID (p.ej. <code>TEMP01</code>), con lista de <code>capitulos</code> por ID.</li>
+            </ul><br>
+
+            <h3>Cómics</h3>
+            <ul>
+              <li><code>GET /comics</code> — lista paginada (campos: <code>id</code>, <code>titulo</code>, <code>tipo</code>, <code>numero_issues</code>, <code>autores</code>, <code>ilustradores</code>, <code>publicacion</code>…)</li>
+              <li><code>GET /comics/{id}</code> — detalle por ID (p.ej. <code>COMC001</code>).</li>
+            </ul>
+
+            <br><hr><br>
+
+            <h2>Recomendaciones de uso</h2>
+            <ul>
+              <li>Para listas largas (ej. capítulos), usa <code>?limit</code> + <code>?skip</code> para paginar.</li>
+              <li>El campo <code>imagen_url</code> es externo: respeta el <em>cache</em> del navegador y evita solicitar la misma imagen muchas veces en poco tiempo.</li>
+              <li>Si tu cliente es público, enlaza a esta Wiki para crédito y contexto del proyecto.</li>
+              <li>Para demos, combina <code>/personajes/aleatorio/{n}</code> con tarjetas visuales; y grafica <code>promedio_imdb</code> por temporada.</li>
+            </ul>
+
+            <br><hr><br>
+
+            <h2>Errores y validación</h2>
+            <ul>
+              <li><code>404</code> — recurso no encontrado (ID inexistente).</li>
+              <li><code>422</code> — validación de parámetros (p.ej., tipos incorrectos).</li>
+              <li><code>500</code> — error interno.</li>
+            </ul><br>
+            <p>Las respuestas de error salen en JSON con mensaje y, en validación, detalles de campos.</p>
+
         </section>
 
         <!-- Swagger, a pantalla completa dentro del área de posts -->
@@ -164,8 +170,6 @@
         </div>
       </section>
     </section>
-
-    <!-- ❌ SIN ASIDE EN ESTA PÁGINA para usar 100% del ancho de .main -->
 
     <footer>
       <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
