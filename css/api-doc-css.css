@@ -1,0 +1,99 @@
+.main {
+      width: 100%;
+      background: #fff;
+      float: left;
+    }
+    /* Oculta topbar azul de Swagger */
+    .topbar { display: none; }
+
+    /* Contenedor propio (seguimos tu grid con .contenedor/.main/.posts) */
+    .swagger-wrap {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Tipografía y suavizados acorde al sitio */
+    .swagger-ui, .swagger-ui * {
+      font-family: 'Comic Neue', cursive, 'Open-Sans', Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: .2px;
+    }
+
+    /* Colores de acento (usa tu celeste) */
+    :root {
+      --rs-primary: #0099e5;
+      --rs-primary-dk: #037fbe;
+      --rs-border: #e7e7e7;
+      --rs-bg-muted: #fafafa;
+    }
+
+    /* Títulos y enlaces */
+    .swagger-ui .info .title { color: #222; }
+    .swagger-ui .info a { color: var(--rs-primary); text-decoration: none; }
+    .swagger-ui .info a:hover { text-decoration: underline; }
+
+    /* Botones principales */
+    .swagger-ui .btn,
+    .swagger-ui .opblock-control-arrow,
+    .swagger-ui .authorize__btn {
+      border-radius: 10px !important;
+      border: 1px solid var(--rs-primary) !important;
+      background: var(--rs-primary) !important;
+      color: #fff !important;
+      transition: transform .06s ease-in, background .2s ease-in-out;
+    }
+    .swagger-ui .btn:hover { transform: translateY(-1px); background: var(--rs-primary-dk) !important; }
+
+    /* Inputs y selects */
+    .swagger-ui input[type=text],
+    .swagger-ui select,
+    .swagger-ui textarea {
+      border-radius: 10px !important;
+      border: 1px solid var(--rs-border) !important;
+      box-shadow: none !important;
+    }
+
+    /* Paneles y bordes suaves */
+    .swagger-ui .scheme-container,
+    .swagger-ui .opblock,
+    .swagger-ui .info,
+    .swagger-ui .models {
+      border: 1px solid var(--rs-border);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .swagger-ui .opblock { margin: 10px 0; }
+
+    /* “GET” en color de marca */
+    .swagger-ui .opblock.opblock-get .opblock-summary-method {
+      background: var(--rs-primary) !important;
+      border-radius: 8px;
+    }
+    .swagger-ui .opblock.opblock-get .opblock-summary {
+      border-left-color: var(--rs-primary) !important;
+    }
+
+    /* Etiquetas/Tags */
+    .swagger-ui .opblock-tag {
+      border-bottom: 1px solid var(--rs-border);
+      padding: 10px 16px;
+    }
+
+    /* Código (try-it-out / response) */
+    .swagger-ui .response-col_status { font-weight: 700; }
+    .swagger-ui .model-box-control,
+    .swagger-ui .opblock-summary-control { color: #666; }
+
+    /* Ancho fluido dentro de .posts (sin aside) */
+    .page-full { max-width: 100%; margin: 0; padding: 0; }
+
+    footer {
+      width: 100%;
+      background: #000;
+      clear: both;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+    }
