@@ -13,7 +13,7 @@
 <body>
 
     <div class="header">
-        <img src="img/logoregularshow.png" alt="">
+        <img src="../img/logoregularshow.png" alt="">
     </div>
 
     <div class="contenedor">
@@ -33,54 +33,239 @@
 
         <section class="main">
             <div class="imagen-desktop">
-                <img src="img/Home-Desktop.jfif" alt="">
+                <img src="../img/Home-Desktop.jfif" alt="">
             </div>
             <section class="posts">
                 <article>
-                    <h2>Regular Show / Un Show Mas / Historias Corrientes</h2>
-                    <p>La serie gira entorno a dos amigos Mordecai y Rigby que encuentran empleo en el parque como cuidadores, 
-                    ambos enfrentaran diversas peculiaridades y aventuras y peleas con entes cosmicos y multiversales.</p>
+                    <h2>Personajes</h2>
+                    <p>Dentro de la serie, podemos ver que los personajes son variados y cada uno tiene su propia personalidad y características únicas. 
+                    Desde los protagonistas Mordecai y Rigby, hasta los personajes secundarios como Pops, Muscle Man y High Five Ghost, todos aportan a 
+                    la dinámica del show, algunos de forma mas sutil y otros de formas muy extrabagantes, alocadas y en algunos casos muy terrorificas.</p>
 
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Impedit, hic. Accusantium quis sequi tempora molestias atque 
-                    doloribus dolores eius, explicabo rerum sint. Impedit deleniti 
-                    tempore velit rerum blanditiis maxime ut.</p>
+                    <p>En este apartado mostramos algunos de los personajes que presenta la serie, y la forma de como se puede ver al consumir la API de
+                        Regular Show. Dejare algunos ejemplos de como se verian las respuestas al consumir la API.
+                    </p>
+                </article>
 
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Impedit, hic. Accusantium quis sequi tempora molestias atque 
-                    doloribus dolores eius, explicabo rerum sint. Impedit deleniti 
-                    tempore velit rerum blanditiis maxime ut.</p>
+                <article>
+                    <!-- === BUSCADOR === -->
+                    <section id="buscador-personajes">
+                    <h3>Buscar personajes</h3>
+                    <form id="form-buscar" class="buscador">
+                        <input id="q-personaje" type="search" placeholder="Ej: Mordecai, Rigby, Benson…" aria-label="Buscar personaje por nombre" />
+                        <button class="btn" type="submit">Buscar</button>
+                        <button class="btn outline" type="button" id="btn-limpiar">Limpiar</button>
+                    </form>
+                    <small class="hero-note">
+                        Busca por <b>nombre (latino)</b> o <b>inglés</b>. Se aplica coincidencia parcial, sin distinción de may/min.
+                    </small>
+
+                    <div id="resultados-personajes" class="contenedor-personajes" style="margin-top:12px;"></div>
+                    </section>
+
+                    <br><hr><br>
+
+                    <!-- === ALEATORIO X20 === -->
+                    <section id="aleatorio-personajes">
+                    <h3>Personajes aleatorios (20)</h3>
+                    <button class="btn" id="btn-aleatorios">Recargar muestra</button>
+                    <div id="aleatorios-personajes" class="contenedor-personajes" style="margin-top:12px;"></div>
+                    </section>
+
+                    <br><hr><br>
+
+                    <!-- === EJEMPLOS DE ENDPOINTS (Personajes) === -->
+                    <section id="endpoints-personajes">
+                    <h3>Endpoints de Personajes</h3>
+                    <ul>
+                        <li><code>GET /personajes</code> — lista paginada (<code>?limit</code>, <code>?skip</code>)</li>
+                        <li><code>GET /personajes/{id}</code> — detalle por ID (p. ej. <code>CHARCT001</code>)</li>
+                        <li><code>GET /personajes/principales</code> — elenco principal</li>
+                        <li><code>GET /personajes/aleatorio/{n}</code> — <em>n</em> personajes aleatorios</li>
+                    </ul>
+
+                    <details>
+                        <summary>Ejemplos rápidos</summary>
+                        <pre># cURL
+                    curl "https://apiregularshow.onrender.com/personajes?limit=6"
+
+                    # JS (fetch)
+                    const res = await fetch("https://apiregularshow.onrender.com/personajes?limit=6");
+                    const data = await res.json();
+                    console.log(data[0]);</pre>
+                    </details>
+                    </section>
+
                 </article>
             </section>
         </section>
 
-        <aside>
-            <div class="widget">
-                <div class="imagen">
-                    <img src="img/Elgrupo.jpg" alt="">
-                </div>
-                <h3 class="titulo">Regular Show</h3><br>
-                <p>Un Show mas (Historias corrientes en España y Regular Show en ingles) es una serie animada estadounidense creada por <a href="https://es.wikipedia.org/wiki/J._G._Quintel" target="_blank">J.G. Quintel.</a><br><br>
-                Fue aprobada el 13 de agosto de 2009 por <a href="https://es.wikipedia.org/wiki/Cartoon_Network" target="_blank">Cartoon Netwowrk</a> en su episodio piloto
-                y se estreno en Latinoamerica el 11 de Agosto del 2010.<br><br>
-                Con 8 temporadas de 261 episodios una Pelicula, 40 comics de Mordecai y Rigby mas 6 tomos especiales de Skips.</p>
-            </div>
-
-            <div class="widget">
-                <h3 class="titulo">Articulos Destacados</h3>
-                <ul>
-                    <li><a href="top-imdb.html">TOP 10 segun IMDb</a></li>
-                    <li><a href="">TOP 10 capitulos musicales</a></li>
-                    <li><a href="">Fans Arts</a></li>
-                    <li><a href="cap-final.html">El final de la serie</a></li>
-                </ul>
-            </div>
-        </aside>
+        <div data-include="../partials/aside.html"></div>
 
         <footer>
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
+
+    <script>
+        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
+        document.addEventListener("DOMContentLoaded", async () => {
+            const targets = document.querySelectorAll("[data-include]");
+            await Promise.all([...targets].map(async el => {
+            const url = el.getAttribute("data-include");
+            try {
+                const res = await fetch(url, { cache: "no-cache" });
+                el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
+            } catch (e) {
+                el.innerHTML = `<p>Error cargando: ${url}</p>`;
+                console.error(e);
+            }
+            }));
+        });
+    </script>
+
+    <script>
+        (function () {
+        const API = "https://apiregularshow.onrender.com";
+
+        // ---- utilidades ----
+        function normaliza(s = "") { return (s || "").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase(); }
+        function el(sel) { return document.querySelector(sel); }
+        function htmlCardPersonaje(p) {
+            const img = p.imagen_url || "../img/placeholder.png";
+            const raza = p.raza || "—";
+            const profesion = p.profesion || "—";
+            return `
+            <article class="card">
+                <div class="card__media">
+                <img class="card__img" src="${img}" alt="Imagen de ${p.nombre}">
+                </div>
+                <div class="card__body">
+                <h3 class="card__title">${p.nombre}</h3>
+                <div class="card__meta">
+                    <div><b>Raza:</b> ${raza}</div>
+                    <div><b>Profesión:</b> ${profesion}</div>
+                    <div><b>ID:</b> ${p.id}</div>
+                </div>
+                </div>
+            </article>
+            `;
+        }
+        function pintarLista(divDestino, lista) {
+            if (!divDestino) return;
+            if (!Array.isArray(lista) || lista.length === 0) {
+            divDestino.innerHTML = '<p class="hero-note">Sin resultados.</p>';
+            return;
+            }
+            divDestino.innerHTML = lista.map(htmlCardPersonaje).join("");
+        }
+
+        // ---- obtener todos los personajes (51 aprox) con paginación segura ----
+        async function fetchTodosPersonajes() {
+            const PAGE = 100;
+            let skip = 0;
+            const todos = [];
+            while (true) {
+            const url = `${API}/personajes?skip=${skip}&limit=${PAGE}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+            const data = await res.json();
+            if (!Array.isArray(data) || data.length === 0) break;
+            todos.push(...data);
+            if (data.length < PAGE) break;
+            skip += PAGE;
+            if (skip > 1000) break; // tope de seguridad
+            }
+            return todos;
+        }
+
+        // ---- ALEATORIOS (20) ----
+        async function cargarAleatorios20() {
+            const cont = el("#aleatorios-personajes");
+            if (!cont) return;
+            cont.innerHTML = '<div class="skeleton">Cargando aleatorios…</div>';
+            try {
+            // Intento 1: endpoint dedicado
+            const r = await fetch(`${API}/personajes/aleatorio/20`);
+            if (r.ok) {
+                const data = await r.json();
+                pintarLista(cont, data);
+                return;
+            }
+            // Fallback: muestrear local
+            const todos = await fetchTodosPersonajes();
+            const barajados = [...todos].sort(() => Math.random() - 0.5).slice(0, 20);
+            pintarLista(cont, barajados);
+            } catch (e) {
+            console.error(e);
+            cont.innerHTML = '<p class="error">No se pudieron cargar los aleatorios.</p>';
+            }
+        }
+
+        // ---- BUSCADOR por nombre (latino o inglés), coincidencia parcial ----
+        let cachePersonajes = null;
+        async function buscarPorNombre(q) {
+            const cont = el("#resultados-personajes");
+            if (!cont) return;
+            const qn = normaliza(q);
+            if (!cachePersonajes) {
+            cont.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
+            try {
+                cachePersonajes = await fetchTodosPersonajes();
+            } catch (e) {
+                console.error(e);
+                cont.innerHTML = '<p class="error">No se pudieron cargar los personajes.</p>';
+                return;
+            }
+            }
+            const filtrados = cachePersonajes.filter(p => {
+            const n1 = normaliza(p.nombre);
+            const n2 = normaliza(p.nombre_ingles || "");
+            return n1.includes(qn) || n2.includes(qn);
+            });
+            pintarLista(cont, filtrados);
+        }
+
+        // ---- eventos de UI ----
+        document.addEventListener("DOMContentLoaded", () => {
+            // aleatorios de inicio
+            cargarAleatorios20();
+
+            // buscar
+            const form = el("#form-buscar");
+            const input = el("#q-personaje");
+            const btnLimpiar = el("#btn-limpiar");
+            const contResultados = el("#resultados-personajes");
+
+            if (form && input) {
+            form.addEventListener("submit", (ev) => {
+                ev.preventDefault();
+                const q = input.value.trim();
+                if (!q) {
+                contResultados.innerHTML = '<p class="hero-note">Escribe un nombre para buscar.</p>';
+                return;
+                }
+                buscarPorNombre(q);
+            });
+            }
+
+            if (btnLimpiar && input && contResultados) {
+            btnLimpiar.addEventListener("click", () => {
+                input.value = "";
+                contResultados.innerHTML = "";
+                input.focus();
+            });
+            }
+
+            // recargar aleatorios
+            const btnAleatorios = el("#btn-aleatorios");
+            if (btnAleatorios) {
+            btnAleatorios.addEventListener("click", cargarAleatorios20);
+            }
+        });
+        })();
+        </script>
+
     
 </body>
 </html>
