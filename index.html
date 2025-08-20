@@ -141,7 +141,6 @@
         </footer>
     </div>
     <script>
-        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
         document.addEventListener("DOMContentLoaded", async () => {
             const targets = document.querySelectorAll("[data-include]");
             await Promise.all([...targets].map(async el => {
