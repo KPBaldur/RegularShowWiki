@@ -19,13 +19,17 @@
 </head>
 <body>
 
-  <!-- Header superior del sitio -->
+  <!--###################################################-->
+  <!------------------------HEADER------------------------->
+  <!--###################################################-->
   <div class="header">
     <img src="../img/logoregularshow.png" alt="Regular Show">
   </div>
 
   <div class="contenedor">
-    <!-- NAV -->
+    <!--###################################################-->
+    <!--------------------------NAV-------------------------->
+    <!--###################################################-->
     <header>
       <nav>
         <ul>
@@ -40,7 +44,9 @@
       </nav>
     </header>
 
-    <!-- MAIN (mantenemos tu misma estructura visual) -->
+    <!--###################################################-->
+    <!-------------------------MAIN-------------------------->
+    <!--###################################################-->
     <section class="main">
       <div class="imagen-desktop">
         <img src="../img/Home-Desktop.jfif" alt="">
@@ -164,7 +170,9 @@
 
         </section>
 
-        <!-- Swagger, a pantalla completa dentro del área de posts -->
+        <!--###################################################-->
+        <!------------------------HEADER------------------------->
+        <!--###################################################-->
         <div class="swagger-wrap page-full">
           <div id="swagger-ui"></div>
         </div>
@@ -176,10 +184,9 @@
     </footer>
   </div>
 
-  <!-- Swagger UI JS -->
+  
   <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
   <script>
-    // Usa PROD por defecto; si quieres local, cambia la constante:
     const SPEC_URL = "https://apiregularshow.onrender.com/openapi.json";
     window.onload = () => {
       SwaggerUIBundle({
@@ -195,7 +202,6 @@
     };
   </script>
 
-  <!-- loader de partials (igual que en index) -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const targets = document.querySelectorAll("[data-include]");
