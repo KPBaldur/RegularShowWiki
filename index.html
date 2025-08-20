@@ -38,9 +38,15 @@
         
 
         <section class="main">
-            <div class="imagen-desktop">
-                <img src="img/Home-Desktop.jfif" alt="">
-            </div>            
+            <div class="hero-banner">
+                <picture>
+                    <!-- Versión móvil/vertical (<= 800px) -->
+                    <source srcset="img/Home-Mobile.jpg" media="(max-width: 800px)">
+                    <!-- Versión desktop/horizontal (fallback y >= 801px) -->
+                    <img src="img/Home-Desktop.jfif" alt="Regular Show" loading="lazy">
+                </picture>
+            </div>
+            
             <section class="posts">
                 <section class="hero">
                     <h1>Regular Show Wiki API</h1>

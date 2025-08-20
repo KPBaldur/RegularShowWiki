@@ -58,8 +58,9 @@ header nav ul li a:hover {
 }
 
 .main .imagen-desktop img {
-    width: 100%;
-    vertical-align: top;
+  width: 100%;
+  height: auto;    /* Mantiene proporción natural */
+  display: block;  /* Evita espacios raros */
 }
 
 .main .posts {
@@ -126,6 +127,18 @@ header nav ul li a:hover {
 /*-------------CONTENT HERO ------------*/
 /*#############################################*/
 /* ====== HERO (bienvenida) ====== */
+.hero-banner {
+  width: 100%;
+}
+.hero-banner picture,
+.hero-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
 
 .main .posts h1 {
   font-size: 2rem;
@@ -202,10 +215,8 @@ header nav ul li a:hover {
   box-shadow: 0 6px 20px rgba(0,0,0,.10);
 }
 
-/* Encabezado de imagen con tamaño estandarizado */
 .card__media {
-  /* Estándar visual: todas las imágenes tienen la misma “caja” */
-  aspect-ratio: 4 / 3;         /* puedes cambiar a 1/1 si prefieres cuadrado */
+  aspect-ratio: 4 / 3;
   background: #fff;
   display: block;
   overflow: hidden;
@@ -213,7 +224,7 @@ header nav ul li a:hover {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: contain;          /* o 'cover' si prefieres recortar para llenar */
+  object-fit: contain;
   display: block;
 }
 
@@ -252,11 +263,10 @@ header nav ul li a:hover {
 
 .grid-episodios {
   display: grid;
-  grid-template-columns: repeat(2x 1fr); /* Desktop: 1 columna */
+  grid-template-columns: repeat(2x 1fr);
   gap: 1.5rem;
 }
     
-/* Tarjeta horizontal por defecto (Desktop) */
 .episode-card {
   display: flex;
   flex-direction: row;
@@ -369,9 +379,6 @@ footer {
 /*-------------MEDIAQUERY------------*/
 /*###################################*/
 
-
-
-/* 2 columnas <=1000px */
 @media (max-width: 1000px) {
   .contenedor-personajes {
     grid-template-columns: repeat(2, 1fr);
@@ -401,7 +408,6 @@ footer {
     height: 160px;
   }
 }
-
 
 @media screen and (max-width:800px) {
     .main {
@@ -438,14 +444,23 @@ footer {
     }
     
     .card__media {
-        aspect-ratio: auto;   /* cancelamos el alto fijo */
-        width: 42%;           /* imagen a la izquierda */
-        min-height: 180px;    /* altura agradable en móvil */
+        aspect-ratio: auto;
+        width: 42%;
+        min-height: 180px;
     }
     
     .card__body {
         width: 58%;
         padding: 14px;
+    }
+     .hero-banner {
+        width: 100%;
+        overflow: visible; /* deja crecer según la imagen */
+    }
+    .hero-banner img {
+        width: 100%;
+        height: auto;      /* altura proporcional natural */
+        object-fit: contain; /* asegura que se vea toda la imagen */
     }
 }
 
