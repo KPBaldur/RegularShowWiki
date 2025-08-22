@@ -6,7 +6,6 @@
   const safe = (v, fb = "—") => (v ?? fb);
   const pad2 = (n) => String(n ?? "").padStart(2, "0");
 
-  // 1) Intenta endpoint dedicado
   async function fetchTop10Direct() {
     try {
       const r = await fetch(`${API}/capitulos/top-imdb?limit=10`);
@@ -18,15 +17,13 @@
     }
   }
 
-  // 2) Fallback: traer todo con paginación segura (max 100), ordenar por imdb_score desc
   async function fetchAllCapitulos() {
-    let limit = 100;                 // <= muchas APIs ponen 100 como máximo
-    const limitsFallback = [100, 50, 25, 10]; // por si 422 persiste
+    let limit = 100;
+    const limitsFallback = [100, 50, 25, 10];
     let skip = 0;
     const todos = [];
 
     for (const L of limitsFallback) {
-      // probamos con distintos tamaños hasta que alguno funcione
       limit = L;
       skip = 0;
       todos.length = 0;
@@ -35,21 +32,17 @@
         const url = `${API}/capitulos?skip=${skip}&limit=${limit}`;
         const r = await fetch(url);
         if (!r.ok) {
-          // si es 422, probamos con un límite menor
-          if (r.status === 422) break; // corta este intento y prueba el siguiente L
+          if (r.status === 422) break;
           throw new Error(`HTTP ${r.status} en ${url}`);
         }
         const page = await r.json();
         if (!Array.isArray(page) || page.length === 0) return todos;
         todos.push(...page);
-        if (page.length < limit) return todos; // última página
+        if (page.length < limit) return todos;
         skip += limit;
-        if (skip > 5000) return todos; // tope de seguridad
+        if (skip > 5000) return todos;
       }
-      // si llegamos aquí, fue 422: probamos con el siguiente tamaño en limitsFallback
     }
-
-    // si ninguno de los límites funcionó, devolvemos lo que tengamos (vacío probablemente)
     return todos;
   }
 
@@ -65,7 +58,7 @@
   }
 
   function htmlItem(ep, idx) {
-    const rank = 10 - idx; // 10 → 1
+    const rank = 10 - idx;
     const titulo = safe(ep.titulo, "Sin título");
     const score = ep.imdb_score != null ? ep.imdb_score : "N/A";
     const temp = pad2(ep.temporada);
