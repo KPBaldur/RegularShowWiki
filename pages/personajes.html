@@ -34,8 +34,8 @@
         <section class="main">
             <div class="hero-banner">
                 <picture>
-                    <source srcset="../img/Home-Mobile.jpg" media="(max-width: 800px)">
-                    <img src="../img/Home-Desktop.jfif" alt="Regular Show" loading="lazy">
+                    <source srcset="../img/header-img/Header-personajes-Mobile.jpg" media="(max-width: 800px)">
+                    <img src="../img/header-img/Header-personajes-desktop.jpg" alt="Regular Show" loading="lazy">
                 </picture>
             </div>
 
@@ -117,18 +117,17 @@
         <aside>
             <div class="widget">
                 <div class="imagen">
-                <img src="../img/aside/Elgrupo.jpg" alt="">
+                <img src="../img/aside/aside-personajes.jpg" alt="">
                 </div>
-                <h3 class="titulo">Regular Show</h3><br>
+                <h3 class="titulo">Personajes de la serie</h3><br>
                 <p>
-                Un Show mas (Historias corrientes en España y Regular Show en ingles) es una serie animada estadounidense creada por
-                <a href="https://es.wikipedia.org/wiki/J._G._Quintel" target="_blank">J.G. Quintel.</a><br><br>
-                Fue aprobada el 13 de agosto de 2009 por
-                <a href="https://es.wikipedia.org/wiki/Cartoon_Network" target="_blank">Cartoon Network</a> en su episodio piloto
-                y se estrenó en Latinoamérica el 11 de Agosto del 2010.<br><br>
-                Con 8 temporadas de 261 episodios, una película, 40 cómics de Mordecai y Rigby más 6 tomos especiales de Skips y con 7 premios Emmy,
-                Un show más se volvió una de las series más vistas de Cartoon Network.<br><br>
-                Aqui se muestran algunos ejemplos de consultas que de pueden hacer con la API.
+                    En este apartado podemos ver el potencia de la serie, con mas de 250 personajes dentro de la serie,
+                    podemos apreciar en su fase inicial de la API los primeros 50, a medida que vaya avanzando el proyecto
+                    me tomare el tiempo para poder subir toda la informacion de los personajes faltantes
+                </p><br>
+                <p>
+                    Por ahora, disponemos de los personajes mas importantes o mas relevantes dentro de la historia de la serie
+                    asi que aprobechen de descubrir que personajes se encuentran dentro de la API. 
                 </p>
             </div>
 
@@ -147,165 +146,7 @@
         </footer>
     </div>
 
-    <script>
-        // include.js minimalista: carga archivos HTML en divs con data-include="ruta.html"
-        document.addEventListener("DOMContentLoaded", async () => {
-            const targets = document.querySelectorAll("[data-include]");
-            await Promise.all([...targets].map(async el => {
-            const url = el.getAttribute("data-include");
-            try {
-                const res = await fetch(url, { cache: "no-cache" });
-                el.innerHTML = res.ok ? await res.text() : `<p>No se pudo cargar: ${url}</p>`;
-            } catch (e) {
-                el.innerHTML = `<p>Error cargando: ${url}</p>`;
-                console.error(e);
-            }
-            }));
-        });
-    </script>
-
-    <script>
-        (function () {
-        const API = "https://apiregularshow.onrender.com";
-
-        // ---- utilidades ----
-        function normaliza(s = "") { return (s || "").toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase(); }
-        function el(sel) { return document.querySelector(sel); }
-        function htmlCardPersonaje(p) {
-            const img = p.imagen_url || "../img/placeholder.png";
-            const raza = p.raza || "—";
-            const profesion = p.profesion || "—";
-            return `
-            <article class="card">
-                <div class="card__media">
-                <img class="card__img" src="${img}" alt="Imagen de ${p.nombre}">
-                </div>
-                <div class="card__body">
-                <h3 class="card__title">${p.nombre}</h3>
-                <div class="card__meta">
-                    <div><b>Raza:</b> ${raza}</div>
-                    <div><b>Profesión:</b> ${profesion}</div>
-                    <div><b>ID:</b> ${p.id}</div>
-                </div>
-                </div>
-            </article>
-            `;
-        }
-        function pintarLista(divDestino, lista) {
-            if (!divDestino) return;
-            if (!Array.isArray(lista) || lista.length === 0) {
-            divDestino.innerHTML = '<p class="hero-note">Sin resultados.</p>';
-            return;
-            }
-            divDestino.innerHTML = lista.map(htmlCardPersonaje).join("");
-        }
-
-        // ---- obtener todos los personajes (51 aprox) con paginación segura ----
-        async function fetchTodosPersonajes() {
-            const PAGE = 100;
-            let skip = 0;
-            const todos = [];
-            while (true) {
-            const url = `${API}/personajes?skip=${skip}&limit=${PAGE}`;
-            const res = await fetch(url);
-            if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
-            const data = await res.json();
-            if (!Array.isArray(data) || data.length === 0) break;
-            todos.push(...data);
-            if (data.length < PAGE) break;
-            skip += PAGE;
-            if (skip > 1000) break; // tope de seguridad
-            }
-            return todos;
-        }
-
-        // ---- ALEATORIOS (20) ----
-        async function cargarAleatorios20() {
-            const cont = el("#aleatorios-personajes");
-            if (!cont) return;
-            cont.innerHTML = '<div class="skeleton">Cargando aleatorios…</div>';
-            try {
-            // Intento 1: endpoint dedicado
-            const r = await fetch(`${API}/personajes/aleatorio/20`);
-            if (r.ok) {
-                const data = await r.json();
-                pintarLista(cont, data);
-                return;
-            }
-            // Fallback: muestrear local
-            const todos = await fetchTodosPersonajes();
-            const barajados = [...todos].sort(() => Math.random() - 0.5).slice(0, 20);
-            pintarLista(cont, barajados);
-            } catch (e) {
-            console.error(e);
-            cont.innerHTML = '<p class="error">No se pudieron cargar los aleatorios.</p>';
-            }
-        }
-
-        // ---- BUSCADOR por nombre (latino o inglés), coincidencia parcial ----
-        let cachePersonajes = null;
-        async function buscarPorNombre(q) {
-            const cont = el("#resultados-personajes");
-            if (!cont) return;
-            const qn = normaliza(q);
-            if (!cachePersonajes) {
-            cont.innerHTML = '<div class="skeleton">Cargando personajes…</div>';
-            try {
-                cachePersonajes = await fetchTodosPersonajes();
-            } catch (e) {
-                console.error(e);
-                cont.innerHTML = '<p class="error">No se pudieron cargar los personajes.</p>';
-                return;
-            }
-            }
-            const filtrados = cachePersonajes.filter(p => {
-            const n1 = normaliza(p.nombre);
-            const n2 = normaliza(p.nombre_ingles || "");
-            return n1.includes(qn) || n2.includes(qn);
-            });
-            pintarLista(cont, filtrados);
-        }
-
-        // ---- eventos de UI ----
-        document.addEventListener("DOMContentLoaded", () => {
-            // aleatorios de inicio
-            cargarAleatorios20();
-
-            // buscar
-            const form = el("#form-buscar");
-            const input = el("#q-personaje");
-            const btnLimpiar = el("#btn-limpiar");
-            const contResultados = el("#resultados-personajes");
-
-            if (form && input) {
-            form.addEventListener("submit", (ev) => {
-                ev.preventDefault();
-                const q = input.value.trim();
-                if (!q) {
-                contResultados.innerHTML = '<p class="hero-note">Escribe un nombre para buscar.</p>';
-                return;
-                }
-                buscarPorNombre(q);
-            });
-            }
-
-            if (btnLimpiar && input && contResultados) {
-            btnLimpiar.addEventListener("click", () => {
-                input.value = "";
-                contResultados.innerHTML = "";
-                input.focus();
-            });
-            }
-
-            // recargar aleatorios
-            const btnAleatorios = el("#btn-aleatorios");
-            if (btnAleatorios) {
-            btnAleatorios.addEventListener("click", cargarAleatorios20);
-            }
-        });
-        })();
-        </script>
-
+        <script src="../js/personajes-page.js"></script>
     
 </body>
 </html>
