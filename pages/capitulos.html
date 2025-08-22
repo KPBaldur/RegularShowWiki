@@ -33,9 +33,13 @@
         </header>
 
         <section class="main">
-            <div class="imagen-desktop">
-                <img src="../img/Home-Desktop.jfif" alt="">
+            <div class="hero-banner">
+                <picture>
+                    <source srcset="../img/header-img/Header-capitulos-mobile.jpg" media="(max-width: 800px)">
+                    <img src="../img/header-img/Header-capitulos-desktop.jpg" alt="Regular Show" loading="lazy">
+                </picture>
             </div>
+
             <section class="posts">
                 <article>
                     <h2>Capítulos</h2>
@@ -72,7 +76,7 @@
                 <!-- ========== ALEATORIOS ========== -->
                 <article>
                     <section id="aleatorio-caps">
-                    <h3>Episodios aleatorios (20)</h3>
+                    <h3>Episodios aleatorios (10)</h3>
                     <button class="btn" id="btn-aleatorios-caps">Recargar muestra</button>
                     <div id="aleatorios-caps" class="grid-episodios" style="margin-top:12px;"></div>
                     </section>
