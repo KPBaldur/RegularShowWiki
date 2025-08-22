@@ -36,22 +36,71 @@
                 <img src="../img/Regular-Show-Final.png" alt="final-regular-show">
             </div>
             <section class="posts">
+
                 <article>
-                    <h2>El final de la serie</h2>
-                    <p>En el momento mas importante de la serie mas famosa del momento de Cartoon Network, era momento de que tuviera
-                        su ansiada pelicula. 
-                    </p>
-
-                    <img src="../img/anti papaleta.jpg" alt="">
-
-                    <p>Con un estilo retro de los 80, estos carismaticos protagonistas  
-                    </p>
-
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Impedit, hic. Accusantium quis sequi tempora molestias atque 
-                    doloribus dolores eius, explicabo rerum sint. Impedit deleniti 
-                    tempore velit rerum blanditiis maxime ut.</p>
+                    <h3>Ficha del capítulo (desde la API)</h3>
+                    <div id="final-episode" class="episode-card" style="margin-top:10px;">
+                        <div class="episode-card__media"><!-- imagen --></div>
+                        <div class="episode-card__body">
+                        <div class="episode-card__title">Cargando…</div>
+                        <ul class="episode-card__meta"></ul>
+                        <p class="episode-card__sinopsis"></p>
+                        </div>
+                    </div>
                 </article>
+
+                <article>
+                    <h2>Una Épica Batalla Final Más</h2>
+                        <img width="100%" src="../img/final-cap/final-battle.jpg" alt="">
+                    <br><br>
+                    <p>
+                        Después de ocho temporadas de bromas internas, locuras cósmicas y amistades improbables,
+                        <strong>Regular Show</strong> cierra su viaje con una despedida que es tan absurda como
+                        profundamente humana. El destino del universo descansa —literalmente— en las manos de
+                        <strong>Papaleta</strong>, quien descubre que su bondad no es una debilidad sino la
+                        fuerza más grande que tiene.
+                    </p>
+                    <p>
+                        La batalla final enfrenta a Papaleta con su hermano gemelo <em>Anti-Pops</em>, una colisión
+                        de opuestos que sacude galaxias, dobla el tiempo y deja a nuestros amigos atrapados entre
+                        la épica y lo íntimo. <strong>Mordecai</strong> y <strong>Rigby</strong>, los dos flojos
+                        más entrañables del parque, han crecido sin darse cuenta: ya no huyen, se quedan. Ya no
+                        bromean, acompañan. Cuando la pelea se vuelve imposible de ganar por la fuerza, Papaleta
+                        entiende lo que la serie nos venía susurrando desde el piloto: <em>hay finales que se
+                        ganan eligiendo soltar</em>.
+                    </p>
+                        <br>
+                        <img src="../img/final-cap/anti papaleta.jpg" alt="">
+                        <br>
+                    <p>
+                        Su decisión lo cambia todo. El universo se reescribe con un último abrazo, una última
+                        sonrisa y una carta que deja paz. El equipo vuelve a casa y el tiempo, caprichoso, avanza.
+                        Vemos el futuro en pequeñas postales: <strong>Rigby</strong> forma una familia junto a
+                        <strong>Eileen</strong>; <strong>Mordecai</strong> encuentra su vocación en el arte y
+                        también un hogar; <strong>Skips</strong> sigue siendo el corazón antiguo del parque;
+                        <strong>Musculoso</strong> y <strong>Starla</strong> gritan su amor con la misma fuerza
+                        con la que cuidan a sus hijos; <strong>Fantasmano</strong> aterriza en una vida tranquila;
+                        <strong>Benson</strong> aprende a abrir su propio frasco de paciencia y de cariño.
+                    </p>
+                    <p>
+                        El parque sigue ahí —con cicatrices y risas— y la ausencia de Papaleta se vuelve presencia:
+                        un recuerdo que no duele, empuja. Cuando los amigos se juntan años después a mirar un viejo
+                        video, entendemos que <em>Regular Show</em> no trató de nunca crecer, sino de aprender a
+                        hacerlo juntos. <strong>Fin</strong>, pero de los bonitos.
+                    </p>
+
+                    <br>
+                    <h3>Temas que cierran la serie</h3>
+                    <ul>
+                        <li><strong>Amistad y lealtad:</strong> Mordecai y Rigby eligen estar, incluso cuando da miedo.</li>
+                        <li><strong>Madurar no es dejar de jugar:</strong> es saber por qué y con quién lo haces.</li>
+                        <li><strong>El sacrificio de Papaleta:</strong> la bondad como forma de fuerza.</li>
+                        <li><strong>El tiempo:</strong> aceptar que crecer también es despedirse.</li>
+                    </ul>
+                </article>
+
+
+
             </section>
         </section>
 
@@ -82,6 +131,86 @@
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
+    <script>
+        (function () {
+        const API = "https://apiregularshow.onrender.com";
+        // Si conoces el ID exacto, ponlo aquí para evitar el barrido:
+        const KNOWN_ID = "CAP243"; // p.ej: "CAP261"
+
+        // utils
+        const norm = s => (s||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
+        const $ = sel => document.querySelector(sel);
+
+        async function fetchFinalEpisode() {
+            // 1) Por ID conocido
+            if (KNOWN_ID) {
+            const r = await fetch(`${API}/capitulos/${KNOWN_ID}`);
+            if (r.ok) return await r.json();
+            }
+
+            // 2) Fallback: paginar con PAGE=100 (tu API rechaza 200)
+            const PAGE = 100;
+            let skip = 0;
+            const all = [];
+            while (true) {
+            const url = `${API}/capitulos?skip=${skip}&limit=${PAGE}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+            const page = await res.json();
+            if (!Array.isArray(page) || page.length === 0) break;
+            all.push(...page);
+            if (page.length < PAGE) break;  // última página
+            skip += PAGE;
+            if (skip > 1000) break;         // tope de seguridad
+            }
+
+            // Busca por título “épica batalla final” (tolerante a tildes/may-min)
+            const target = all.find(ep => norm(ep.titulo).includes("epica batalla final"));
+            if (!target) throw new Error("No se encontró el capítulo final por título.");
+            return target;
+        }
+
+        function renderEpisode(ep) {
+            const wrap = $("#final-episode");
+            if (!wrap) return;
+            const media = wrap.querySelector(".episode-card__media");
+            const title = wrap.querySelector(".episode-card__title");
+            const meta  = wrap.querySelector(".episode-card__meta");
+            const sin   = wrap.querySelector(".episode-card__sinopsis");
+
+            const img = ep.imagen_url || "../img/placeholder-episodio.jpg";
+            media.innerHTML = `<img class="episode-card__img" src="${img}" alt="Capítulo ${ep.titulo}">`;
+            title.textContent = ep.titulo;
+
+            const imd = ep.imdb_score ?? "N/A";
+            const temp = String(ep.temporada ?? "—").padStart(2,"0");
+            const num  = String(ep.capitulo ?? ep.numero ?? "—").padStart(2,"0");
+            const date = ep.fecha_estreno || "Desconocido";
+
+            meta.innerHTML = `
+            <li><b>Temporada:</b> ${temp}</li>
+            <li><b>Capítulo:</b> ${num}</li>
+            <li><b>Estreno:</b> ${date}</li>
+            <li><b>IMDb:</b> ${imd}</li>
+            <li><b>ID:</b> ${ep.id}</li>
+            `;
+            sin.textContent = ep.sinopsis || "Sinopsis no disponible en la API.";
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const box = document.querySelector("#final-episode .episode-card__title");
+            try {
+            if (box) box.textContent = "Cargando datos de la API…";
+            const ep = await fetchFinalEpisode();
+            renderEpisode(ep);
+            } catch (err) {
+            console.error(err);
+            if (box) box.textContent = "No se pudo cargar la ficha del capítulo.";
+            }
+        });
+        })();
+    </script>
+
     
 </body>
 </html>
