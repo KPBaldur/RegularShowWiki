@@ -72,7 +72,7 @@
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
-      cont.innerHTML = arr.slice(0, 20).map(cardEpisodio).join("");
+      cont.innerHTML = arr.slice(0, 10).map(cardEpisodio).join("");
     } catch (e) {
       console.error(e);
       cont.innerHTML = '<p class="error">No se pudieron cargar episodios aleatorios.</p>';
