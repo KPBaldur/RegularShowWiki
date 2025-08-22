@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/capitulos.css">
     <link rel="stylesheet" href="../style.css">
     <title>Regular Show Wiki</title>
 </head>
@@ -33,32 +34,71 @@
 
         <section class="main">
             <div class="imagen-desktop">
-                <img src="img/Home-Desktop.jfif" alt="">
+                <img src="../img/Home-Desktop.jfif" alt="">
             </div>
             <section class="posts">
                 <article>
-                    <h2>Regular Show API wiki</h2>
-                    <p>Bienvenidos a la Wiki de Regular Show, aqui podras encontrar todo lo relacionado a la serie animada creada por J.G. Quintel, desde sus personajes, episodios, comics,
-                    peliculas, curiosidades y mucho mas, todo lo que necesitas saber sobre la serie animada que marco una generacion y que se volvio un clasico de Cartoon Network.
+                    <h2>Capítulos</h2>
+                    <p>
+                    Explora todos los capítulos de <em>Regular Show</em>. Aquí puedes buscar por
+                    <b>título</b>, <b>ID</b> (p. ej. <code>CAP001</code>), <b>número de episodio</b> o
+                    <b>temporada</b>. Abajo también encontrarás las temporadas en “pestañas”
+                    (acordeón) con sus capítulos.
                     </p>
-                    <p>La serie gira entorno a dos amigos Mordecai y Rigby que encuentran empleo en el parque como cuidadores, 
-                    ambos enfrentaran diversas peculiaridades, aventuras y peleas con entes cosmicos y multiversales junto con sus
-                    compañeros de trabajo Musculoso, Fantasmano, Skips, Papaleta y su jefe del trabajo Benson.
-                    </p>
+                </article>
 
-                    <p>Con un estilo retro de los 80, nuestros protagonistas se daran cuenta que no podran disfrutar de su tranquilidad
-                    al dia a dia, un simple trabajo en el parque o una cita romantica, desencadenara una lista larga o corta cadena de hechos
-                    que pondran su vida en riesgo.
-                    </p>
+                <!-- ========== BUSCADOR ========== -->
+                <article>
+                    <section id="buscador-capas">
+                    <h3>Buscar capítulos</h3>
+                    <form id="form-buscar-caps" class="buscador">
+                        <input id="q-capitulo" type="search"
+                            placeholder="Ej: The Button, CAP001, temporada 3, número 12"
+                            aria-label="Buscar capítulo por título, id, temporada o número" />
+                        <button class="btn" type="submit">Buscar</button>
+                        <button class="btn outline" type="button" id="btn-limpiar-caps">Limpiar</button>
+                    </form>
+                    <small class="hero-note">
+                        Acepta búsqueda parcial por <b>título</b> o exacta por <b>ID</b> (CAPxxx). También
+                        puedes escribir <i>temporada 3</i> o <i>numero 12</i>.
+                    </small>
 
-                    <p>Con 261 episodios, con algunos sin trama continua, Un Show Mas nos entregara una experiencia unica, con una formula
-                    nunca antes vista, con guiños a la cultura retro, y que tambien lograremos ver la evolucion de la tecnologia como podremos ver
-                    en el capitulo "La Guerra de los Formatos" 1 y 2.
-                    </p>
+                    <div id="resultados-caps" class="grid-episodios" style="margin-top:12px;"></div>
+                    </section>
+                </article>
 
-                    <p>Un Show mas nos da un antes y despues de las caricaturas, con un inicio unico y humoristico y con un final reconfortante, nostalgico 
-                    y que segun el IMDb esta entre los mejores finales de caricatura de la television.
-                    </p>
+                <br><hr><br>
+
+                <!-- ========== ALEATORIOS ========== -->
+                <article>
+                    <section id="aleatorio-caps">
+                    <h3>Episodios aleatorios (20)</h3>
+                    <button class="btn" id="btn-aleatorios-caps">Recargar muestra</button>
+                    <div id="aleatorios-caps" class="grid-episodios" style="margin-top:12px;"></div>
+                    </section>
+                </article>
+
+                <br><hr><br>
+
+                <!-- ========== ACORDEÓN TEMPORADAS ========== -->
+                <article>
+                    <section id="acordeon-temporadas">
+                    <h3>Todas las temporadas</h3>
+                    <div id="lista-temporadas" class="accordion"></div>
+                    </section>
+                </article>
+
+                <br><hr><br>
+
+                <!-- ========== ENDPOINTS (ayuda) ========== -->
+                <article>
+                    <h3>Endpoints de Capítulos</h3>
+                    <ul>
+                    <li><code>GET /capitulos</code> — lista (usa <code>?limit</code>, <code>?skip</code> para paginar)</li>
+                    <li><code>GET /capitulos/{id}</code> — detalle por ID (p. ej. <code>CAP001</code>)</li>
+                    <li><code>GET /temporadas</code> — temporadas (+ <code>numero_capitulos</code>, <code>promedio_imdb</code>)</li>
+                    <li><code>GET /temporadas/{id}</code> — detalle con <code>capitulos</code> (IDs)</li>
+                    </ul>
                 </article>
             </section>
         </section>
@@ -66,7 +106,7 @@
         <aside>
             <div class="widget">
                 <div class="imagen">
-                    <img src="img/Elgrupo.jpg" alt="">
+                    <img src="../img/aside/Elgrupo.jpg" alt="">
                 </div>
                 <h3 class="titulo">Lorem ipsum </h3><br>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eveniet libero fuga tenetur sunt, et quo debitis 
@@ -77,7 +117,6 @@
                 <h3 class="titulo">Articulos Destacados</h3>
                 <ul>
                     <li><a href="top-imdb.html">TOP 10 segun IMDb</a></li>
-                    <li><a href="">TOP 10 capitulos musicales</a></li>
                     <li><a href="fans-arts.html">Fans Arts</a></li>
                     <li><a href="cap-final.html">El final de la serie</a></li>
                 </ul>
@@ -88,6 +127,7 @@
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
-    
+
+    <script src="../js/capitulos-page.js"></script>
 </body>
 </html>

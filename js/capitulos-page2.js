@@ -146,67 +146,49 @@
 
   // Acordeón de temporadas
   async function cargarAcordeonTemporadas() {
-  const wrap = $("#lista-temporadas");
-  if (!wrap) return;
-  wrap.innerHTML = '<div class="skeleton">Cargando temporadas…</div>';
+    const wrap = $("#lista-temporadas");
+    if (!wrap) return;
+    wrap.innerHTML = '<div class="skeleton">Cargando temporadas…</div>';
 
-  try {
-    const rt = await fetch(`${API}/temporadas`);
-    if (!rt.ok) throw new Error(rt.status);
-    const temps = await rt.json(); // [{id, numero, ... , capitulos:[CAPxxx]}]
+    try {
+      const rt = await fetch(`${API}/temporadas`);
+      if (!rt.ok) throw new Error(rt.status);
+      const temps = await rt.json(); // [{id, numero, ... , capitulos:[CAPxxx]}]
 
-    // Todos los capítulos (para armar las tarjetas dentro de cada temporada)
-    const caps = await getTodosLosCapitulos();
-    const byId = new Map(caps.map(c => [c.id, c]));
+      // index de capítulos por id para resolver rápido
+      const caps = await getTodosLosCapitulos();
+      const byId = new Map(caps.map(c => [c.id, c]));
 
-    // Helper para obtener un número de temporada robusto
-    const getNumeroTemp = (t, idx) => {
-      // 1) si viene numero, úsalo
-      if (t.numero != null) return Number(t.numero);
-      // 2) intenta extraer dígitos del id (ej: TEMP01 -> 1)
-      const m = String(t.id || "").match(/\d+/);
-      if (m) return Number(m[0]);
-      // 3) fallback: índice + 1
-      return idx + 1;
-    };
+      const html = temps
+        .sort((a,b)=>a.numero-b.numero)
+        .map(t => {
+          const capsDeTemp = (t.capitulos || [])
+            .map(id => byId.get(id))
+            .filter(Boolean)
+            .sort((a,b)=>a.numero-b.numero)
+            .map(cardEpisodio)
+            .join("");
 
-    const html = temps
-      // ordénalas por numero robusto
-      .sort((a, b) => getNumeroTemp(a, 0) - getNumeroTemp(b, 0))
-      .map((t, i) => {
-        const numTemp = getNumeroTemp(t, i);
+          return `
+            <details class="acc">
+              <summary>
+                <span>Temporada ${t.numero}</span>
+                <small>(${t.numero_capitulos} eps · IMDb medio: ${t.promedio_imdb ?? "N/A"})</small>
+              </summary>
+              <div class="acc__panel grid-episodios">
+                ${capsDeTemp || '<p class="hero-note">Sin capítulos enlazados.</p>'}
+              </div>
+            </details>
+          `;
+        })
+        .join("");
 
-        const capsDeTemp = (t.capitulos || [])
-          .map(id => byId.get(id))
-          .filter(Boolean)
-          .sort((a, b) => a.numero - b.numero)
-          .map(cardEpisodio)
-          .join("");
-
-        const imdbMedio = (t.promedio_imdb ?? "N/A");
-        const total = (t.numero_capitulos ?? (t.capitulos?.length ?? "0"));
-
-        return `
-          <details class="acc">
-            <summary>
-              <span>Temporada ${String(numTemp).padStart(2, "0")}</span>
-              <small>(${total} eps · IMDb medio: ${imdbMedio})</small>
-            </summary>
-            <div class="acc__panel grid-episodios">
-              ${capsDeTemp || '<p class="hero-note">Sin capítulos enlazados.</p>'}
-            </div>
-          </details>
-        `;
-      })
-      .join("");
-
-    wrap.innerHTML = html;
-  } catch (e) {
-    console.error(e);
-    wrap.innerHTML = '<p class="error">No se pudieron cargar las temporadas.</p>';
+      wrap.innerHTML = html;
+    } catch (e) {
+      console.error(e);
+      wrap.innerHTML = '<p class="error">No se pudieron cargar las temporadas.</p>';
+    }
   }
-}
-
 
   // init
   document.addEventListener("DOMContentLoaded", () => {

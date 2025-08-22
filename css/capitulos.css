@@ -1,0 +1,35 @@
+/* ===== Acordeón de temporadas ===== */
+.accordion { display: grid; gap: 12px; }
+.acc {
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+.acc > summary {
+  list-style: none; /* quita triángulo por defecto (lo reemplaza ::marker de details) */
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 700;
+  background: #fafafa;
+}
+.acc[open] > summary { background: #f3f8ff; }
+.acc > summary::-webkit-details-marker { display: none; } /* Safari/Chrome */
+.acc__panel { padding: 14px; }
+
+/* Reutiliza tu grilla de episodios: ajusta a 2 columnas en desktop */
+.accordion .grid-episodios {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+/* Responsive acordeón */
+@media (max-width: 900px) {
+  .accordion .grid-episodios { grid-template-columns: 1fr; }
+}
