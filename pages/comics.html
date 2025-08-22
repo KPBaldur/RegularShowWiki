@@ -13,7 +13,7 @@
 <body>
 
     <div class="header">
-        <img src="img/logoregularshow.png" alt="">
+        <img src="../img/logoregularshow.png" alt="">
     </div>
 
     <div class="contenedor">
@@ -32,20 +32,59 @@
         </header>
 
         <section class="main">
-            <div class="imagen-desktop">
-                <img src="img/Home-Desktop.jfif" alt="">
+            <div class="hero-banner">
+                <picture>
+                    <source srcset="../img/header-img/Header-comics-Mobile.jpg" media="(max-width: 800px)">
+                    <img src="../img/header-img/Header-comics-desktop.jpg" alt="Regular Show" loading="lazy">
+                </picture>
             </div>
+
+
             <section class="posts">
                 <article>
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero perferendis, quae aliquam aperiam quidem quam laborum 
-                        minus maxime dolores, iure nobis, nisi sed? Reprehenderit quod voluptatem natus excepturi, corrupti labore.
+                    <h2>Cómics</h2>
+                    <p>
+                    En este apartado puedes explorar los cómics de <em>Regular Show</em> publicados por diferentes editoriales.
+                    Hay números regulares, especiales y algunos tomos centrados en personajes.
                     </p>
-
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero perferendis, quae aliquam aperiam quidem quam laborum 
-                        minus maxime dolores, iure nobis, nisi sed? Reprehenderit quod voluptatem natus excepturi, corrupti labore.
+                    <p>
+                    Abajo tienes un buscador por <b>título</b> o <b>tipo</b> (p. ej. “especial”) y una muestra aleatoria.
                     </p>
                     <br><br>
+                </article>
+
+                <article>
+                    <!-- ========================= -->
+                    <!-- Buscador de CÓMICS       -->
+                    <!-- ========================= -->
+                    <section id="buscador-comics">
+                    <h3>Buscar cómics</h3>
+                    <form id="form-buscar-comics" class="buscador">
+                        <input id="q-comic" type="search"
+                            placeholder="Ej: ‘Skips’, ‘Special’, ‘Mordecai & Rigby’…"
+                            aria-label="Buscar cómic por título o tipo" />
+                        <button class="btn" type="submit">Buscar</button>
+                        <button class="btn outline" type="button" id="btn-limpiar-comics">Limpiar</button>
+                    </form>
+                    <small class="hero-note">
+                        Coincidencia parcial, sin distinción de mayúsculas/minúsculas y sin tildes.
+                    </small>
+
+                    <div id="resultados-comics" class="contenedor-personajes" style="margin-top:12px;"></div>
+                    </section>
+
+                    <br><hr><br>
+
+                    <!-- ========================= -->
+                    <!-- Aleatorios de CÓMICS     -->
+                    <!-- ========================= -->
+                    <section id="aleatorio-comics">
+                    <h3>Cómics aleatorios (8)</h3>
+                    <button class="btn" id="btn-aleatorios-comics">Recargar muestra</button>
+                    <div id="aleatorios-comics" class="contenedor-personajes" style="margin-top:12px;"></div>
+                    </section>
+
+                    <br><hr><br>
                 </article>
             </section>
         </section>
@@ -53,11 +92,20 @@
         <aside>
             <div class="widget">
                 <div class="imagen">
-                    <img src="../img/aside/aside-capitulos.jpg" alt="">
+                    <img src="../img/aside/aside-comics.jpg" alt="">
                 </div>
-                <h3 class="titulo">Lorem ipsum </h3><br>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, eveniet libero fuga tenetur sunt, et quo debitis 
-                    pariatur consequuntur unde amet, sed sit dignissimos officia eius exercitationem ut iste totam?</p>
+                <h3 class="titulo">Comics de Regular Show</h3><br>
+                <p>
+                    Además de la serie animada, Regular Show también tuvo una línea de cómics publicada por 
+                    Boom! Studios. Estas historietas expanden el universo creado por J.G. Quintel con nuevas 
+                    aventuras de Mordecai, Rigby y el resto del grupo.
+                    Los cómics incluyen números regulares, ediciones especiales y tomos dedicados a personajes 
+                    como Skips, ofreciendo historias que nunca se vieron en televisión.
+                </p><br>
+                <p>
+                    En este apartado puedes explorar los distintos títulos, autores e ilustradores que dieron 
+                    vida a estas publicaciones, así como su fecha de publicación y el tipo de serie a la que pertenecen.
+                </p>
             </div>
 
             <div class="widget">
@@ -74,6 +122,8 @@
             <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
         </footer>
     </div>
-    
+
+    <script src="../js/comics-page.js"></script>
+
 </body>
 </html>
