@@ -59,39 +59,66 @@ header nav ul li a:hover {
 
 .main .imagen-desktop img {
   width: 100%;
-  height: auto;    /* Mantiene proporción natural */
-  display: block;  /* Evita espacios raros */
+  height: auto;
+  display: block;
 }
 
 .main .posts {
     padding: 40px;
 }
 
-.main .contenedor-contacto {
-    width: 100%;
-    display: inline-block;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    text-align: center;
+/* ===== Botones de contacto (Icono + Texto) ===== */
+.main .contenedor-contacto{
+  width:100%;
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:stretch;
 }
 
-.main .contenedor-contacto a{
-    width: 45%;
-    height: 50px;
-    display: inline-block;
-    align-items: center;
-    margin: 10px 0;
-    padding: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #0099e5;
+.main .contenedor-contacto .contact-btn{
+  /* 2 por fila en desktop; base ~320px */
+  flex: 1 1 320px;
+  max-width:520px;
+  display:flex;           /* para que el hijo crezca */
 }
 
-.main .contenedor-contacto a:hover{
-    color: #343434;
-    background-color: #fff;
-    border: solid #0099e5;
+.main .contenedor-contacto .contact-btn > a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
+  background:#0d2533;          /* tono oscuro para contraste */
+  color:#fff;
+  text-decoration:none;
+  border:1px solid #0d2533;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  transition:transform .06s ease-in, background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.main .contenedor-contacto .contact-btn > a:hover{
+  transform:translateY(-1px);
+  background:#fff;
+  color:#343434;
+  border-color:#0099e5;
+}
+
+.main .contenedor-contacto .contact-btn > a:focus-visible{
+  outline:3px solid #58c7ff;
+  outline-offset:2px;
+}
+
+.main .contenedor-contacto .contact-btn i{
+  font-size:1.25rem;
+  line-height:1;
+}
+
+.main .contenedor-contacto .contact-btn span{
+  font-size:1.05rem;
+  font-weight:700;
 }
 
 
@@ -111,7 +138,7 @@ header nav ul li a:hover {
 }
 
 .main .botonera-plataformas {
-    width: 100%;
+    width: 50%;
     display: row;
     text-align: center;
 }
@@ -136,9 +163,6 @@ header nav ul li a:hover {
   width: 100%;
   height: auto;
 }
-
-
-
 
 .main .posts h1 {
   font-size: 2rem;
@@ -455,12 +479,17 @@ footer {
     }
      .hero-banner {
         width: 100%;
-        overflow: visible; /* deja crecer según la imagen */
+        overflow: visible;
     }
     .hero-banner img {
         width: 100%;
-        height: auto;      /* altura proporcional natural */
-        object-fit: contain; /* asegura que se vea toda la imagen */
+        height: auto;
+        object-fit: contain;
+    }
+    .main .contenedor-contacto{ gap:12px; }
+    .main .contenedor-contacto .contact-btn{
+      flex:1 1 100%;
+      max-width:none;
     }
 }
 
