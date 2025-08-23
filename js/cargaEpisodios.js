@@ -11,7 +11,7 @@ async function fetchTodosLosCapitulos(baseUrl) {
     todos.push(...page);
     if (page.length < PAGE_SIZE) break;
     skip += PAGE_SIZE;
-    if (skip > 1000) break; // tope de seguridad
+    if (skip > 1000) break;
   }
   return todos;
 }
@@ -59,7 +59,7 @@ async function cargarEpisodios() {
   try {
     const BASE = "https://apiregularshow.onrender.com/capitulos";
     const episodios = await fetchTodosLosCapitulos(BASE);
-    const muestra = sampleAleatorio(episodios, 6); // 6 = 3 filas x 2 col (ajusta al gusto)
+    const muestra = sampleAleatorio(episodios, 6);
     contenedor.innerHTML = muestra.map(tarjetaEpisodio).join("");
   } catch (err) {
     console.error("Error al cargar episodios:", err);

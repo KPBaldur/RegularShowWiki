@@ -5,8 +5,7 @@
   const $ = (sel) => document.querySelector(sel);
   const norm = (s="") => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
   const safe = (v, fb="—") => (v ?? fb);
-
-  // Tarjeta visual de villano (imagen, nombre, estado, capítulo aparición)
+  
   function cardVillano(p) {
     const img  = p.imagen_url || "../img/placeholder.png";
     const nom  = safe(p.nombre, "Sin nombre");
@@ -29,7 +28,6 @@
     `;
   }
 
-  // Paginar de forma segura (tu API suele aceptar hasta 100)
   async function fetchTodosPersonajes() {
     const PAGE = 100;
     let skip = 0;
@@ -43,14 +41,13 @@
       todos.push(...page);
       if (page.length < PAGE) break;
       skip += PAGE;
-      if (skip > 2000) break; // tope de seguridad
+      if (skip > 2000) break;
     }
     return todos;
   }
 
   function esAntagonista(p) {
     const t = norm(String(p.tipo_personaje || ""));
-    // tolerante a formas como "antagonista", "antagónico", "antagonistas", etc.
     return t.includes("antagon");
   }
 

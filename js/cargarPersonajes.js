@@ -23,7 +23,6 @@ function tarjetaPersonaje(p) {
   `;
 }
 
-// ---------- PRINCIPALES ----------
 async function cargarPersonajesPrincipales() {
   try {
     const resp = await fetch("https://apiregularshow.onrender.com/personajes/principales");
@@ -31,14 +30,13 @@ async function cargarPersonajesPrincipales() {
     const personajes = await resp.json();
 
     const cont = document.getElementById("personajes-principales");
-    cont.className = "contenedor-personajes"; // usa el alias de grid
+    cont.className = "contenedor-personajes";
     cont.innerHTML = personajes.map(tarjetaPersonaje).join("");
   } catch (err) {
     console.error("Error al cargar personajes principales:", err);
   }
 }
 
-// ---------- ALEATORIOS ----------
 async function cargarPersonajesAleatorios() {
   try {
     const resp = await fetch("https://apiregularshow.onrender.com/personajes/aleatorio/6");
@@ -46,7 +44,7 @@ async function cargarPersonajesAleatorios() {
     const personajes = await resp.json();
 
     const cont = document.getElementById("personajes-dinamicos");
-    cont.className = "contenedor-personajes"; // usa el alias de grid
+    cont.className = "contenedor-personajes";
     cont.innerHTML = personajes.map(tarjetaPersonaje).join("");
   } catch (err) {
     console.error("Error al cargar personajes aleatorios:", err);

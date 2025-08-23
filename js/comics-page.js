@@ -1,7 +1,6 @@
 (function () {
   const API = "https://apiregularshow.onrender.com";
 
-  // ---------- utilidades ----------
   const $ = (sel) => document.querySelector(sel);
   const norm = (s = "") =>
     (s || "").toString().normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
@@ -44,7 +43,6 @@
     $dest.innerHTML = lista.map(htmlCardComic).join("");
   }
 
-  // ---------- fetch con paginación segura ----------
   async function fetchTodosComics() {
     const PAGE = 100;
     let skip = 0;
@@ -58,19 +56,17 @@
       todos.push(...data);
       if (data.length < PAGE) break;
       skip += PAGE;
-      if (skip > 2000) break; // tope de seguridad
+      if (skip > 2000) break;
     }
     return todos;
   }
 
-  // ---------- aleatorios (8) ----------
   async function cargarComicsAleatorios() {
     const cont = $("#aleatorios-comics");
     if (!cont) return;
     cont.innerHTML = '<div class="skeleton">Cargando cómics…</div>';
 
     try {
-      // si algún día hay endpoint /comics/aleatorio/{n}, úsalo aquí
       const todos = await fetchTodosComics();
       const mezclados = [...todos].sort(() => Math.random() - 0.5).slice(0, 8);
       pintarLista(cont, mezclados);
@@ -80,7 +76,6 @@
     }
   }
 
-  // ---------- buscador por título o tipo ----------
   let cache = null;
   async function buscarComics(q) {
     const cont = $("#resultados-comics");
@@ -107,12 +102,8 @@
     pintarLista(cont, filtrados);
   }
 
-  // ---------- eventos UI ----------
   document.addEventListener("DOMContentLoaded", () => {
-    // aleatorios de inicio
     cargarComicsAleatorios();
-
-    // buscador
     const form = $("#form-buscar-comics");
     const input = $("#q-comic");
     const btnClr = $("#btn-limpiar-comics");
@@ -138,7 +129,6 @@
       });
     }
 
-    // recargar aleatorios
     const btnRand = $("#btn-aleatorios-comics");
     if (btnRand) btnRand.addEventListener("click", cargarComicsAleatorios);
   });

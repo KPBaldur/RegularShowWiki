@@ -44,8 +44,10 @@ header nav ul li a:hover {
     color: #fff;
 }
 
+
+/*##################################*/
 /*-------------MAIN-------------*/
-/*##############################*/
+/*##################################*/
 
 .main {
     width: 70%;
@@ -67,7 +69,6 @@ header nav ul li a:hover {
     padding: 40px;
 }
 
-/* ===== Botones de contacto (Icono + Texto) ===== */
 .main .contenedor-contacto{
   width:100%;
   display:flex;
@@ -78,10 +79,9 @@ header nav ul li a:hover {
 }
 
 .main .contenedor-contacto .contact-btn{
-  /* 2 por fila en desktop; base ~320px */
   flex: 1 1 320px;
   max-width:520px;
-  display:flex;           /* para que el hijo crezca */
+  display:flex;
 }
 
 .main .contenedor-contacto .contact-btn > a{
@@ -91,7 +91,7 @@ header nav ul li a:hover {
   width:100%;
   padding:14px 18px;
   border-radius:12px;
-  background:#0d2533;          /* tono oscuro para contraste */
+  background:#0d2533;
   color:#fff;
   text-decoration:none;
   border:1px solid #0d2533;
@@ -137,7 +137,7 @@ header nav ul li a:hover {
     justify-content: center
 }
 
-/* Grilla fluida de botones-tarjeta */
+
 .platforms{
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(160px, 1fr) );
@@ -164,11 +164,10 @@ header nav ul li a:hover {
   box-shadow: 0 6px 20px rgba(0,0,0,.10);
 }
 
-/* La imagen se adapta, con alto coherente */
 .platforms .platform img{
   display: block;
   max-width: 100%;
-  height: 44px;           /* alto visual consistente */
+  height: 44px;
   object-fit: contain;
 }
 
@@ -229,8 +228,9 @@ header nav ul li a:hover {
 }
 
 
-/*-------------TARJETA DE PERSONAJE------------*/
-/*#############################################*/
+/*###################################################*/
+/*----------------TARJETA DE PERSONAJE---------------*/
+/*###################################################*/
 
 .contenedor-personajes {
   display: grid;
@@ -239,7 +239,6 @@ header nav ul li a:hover {
   align-items: stretch;
 }
 
-/* ======== GRID DE PERSONAJES ======== */
 .grid-personajes {
   /* ocupa el 100% del ancho disponible del área de posts */
   display: grid;
@@ -248,8 +247,6 @@ header nav ul li a:hover {
   align-items: stretch;
 }
 
-
-/* ======== TARJETA DE PERSONAJE ======== */
 .card {
   display: flex;
   flex-direction: column;
@@ -278,7 +275,9 @@ header nav ul li a:hover {
   display: block;
 }
 
-/* Contenido */
+/*###################################################*/
+/*---------------CONTENIDO -------------------------*/
+/*###################################################*/
 .card__body {
   padding: 14px 16px 16px;
   display: grid;
@@ -307,9 +306,9 @@ header nav ul li a:hover {
   flex-wrap: wrap;
 }
 
-/* ============================= */
-/* GRID + CARD DE CAPÍTULOS      */
-/* ============================= */
+/*###################################################*/
+/*---------------GRID Y CARD DE CAPÍTULOS-----------*/
+/*###################################################*/
 
 .grid-episodios {
   display: grid;
@@ -353,8 +352,9 @@ header nav ul li a:hover {
   font-size: .9rem;
 }
 
-/*-------------ASIDE------------*/
-/*##############################*/
+/*###################################################*/
+/*-----------------------ASIDE-----------------------*/
+/*###################################################*/
 
 aside {
     width: 30%;
@@ -414,6 +414,7 @@ aside .widget p a:hover{
     color: #ff8000;
 }
 
+/*################################*/
 /*-------------FOOTER------------*/
 /*###############################*/
 
@@ -426,6 +427,7 @@ footer {
     text-align: center;
 }
 
+/*####################################*/
 /*-------------MEDIAQUERY------------*/
 /*###################################*/
 
@@ -534,8 +536,6 @@ footer {
   }
 }
 
-
-/* Ajuste extra para pantallas muy pequeñas */
 @media (max-width: 480px) {
   .episode-card__media { width: 40%; min-width: 150px; }
   .episode-card__body  { width: 60%; }

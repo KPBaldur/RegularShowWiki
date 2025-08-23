@@ -4,10 +4,8 @@
   float: left;
 }
 
-/* Oculta topbar azul de Swagger */
 .topbar { display: none; }
 
-/* Contenedor propio (seguimos tu grid con .contenedor/.main/.posts) */
 .swagger-wrap {
   border: 1px solid #eee;
   border-radius: 12px;
@@ -15,13 +13,11 @@
   background: #fff;
 }
 
-/* Tipografía y suavizados acorde al sitio */
 .swagger-ui, .swagger-ui * {
   font-family: 'Comic Neue', cursive, 'Open-Sans', Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: .2px;
 }
 
-/* Colores de acento (usa tu celeste) */
 :root {
   --rs-primary: #0099e5;
   --rs-primary-dk: #037fbe;
@@ -29,12 +25,10 @@
   --rs-bg-muted: #fafafa;
 }
 
-/* Títulos y enlaces */
 .swagger-ui .info .title { color: #222; }
 .swagger-ui .info a { color: var(--rs-primary); text-decoration: none; }
 .swagger-ui .info a:hover { text-decoration: underline; }
 
-/* Botones principales */
 .swagger-ui .btn,
 .swagger-ui .opblock-control-arrow,
 .swagger-ui .authorize__btn {
@@ -49,7 +43,6 @@
   background: var(--rs-primary-dk) !important; 
 }
 
-/* Inputs y selects */
 .swagger-ui input[type=text],
 .swagger-ui select,
 .swagger-ui textarea {
@@ -58,7 +51,6 @@
   box-shadow: none !important;
 }
 
-/* Paneles y bordes suaves */
 .swagger-ui .scheme-container,
 .swagger-ui .opblock,
 .swagger-ui .info,
@@ -70,7 +62,6 @@
 }
 .swagger-ui .opblock { margin: 10px 0; }
 
-/* “GET” en color de marca */
 .swagger-ui .opblock.opblock-get .opblock-summary-method {
   background: var(--rs-primary) !important;
   border-radius: 8px;
@@ -79,21 +70,17 @@
   border-left-color: var(--rs-primary) !important;
 }
 
-/* Etiquetas/Tags */
 .swagger-ui .opblock-tag {
   border-bottom: 1px solid var(--rs-border);
   padding: 10px 16px;
 }
 
-/* Código (try-it-out / response) */
 .swagger-ui .response-col_status { font-weight: 700; }
 .swagger-ui .model-box-control,
 .swagger-ui .opblock-summary-control { color: #666; }
 
-/* Ancho fluido dentro de .posts (sin aside) */
 .page-full { max-width: 100%; margin: 0; padding: 0; }
 
-/* Footer */
 footer {
   width: 100%;
   background: #000;
@@ -103,7 +90,6 @@ footer {
   text-align: center;
 }
 
-/* 🔹 Eliminar viñetas en listas de documentación */
 .posts ul {
   list-style: none;
   padding-left: 0;

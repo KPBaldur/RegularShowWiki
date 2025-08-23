@@ -1,4 +1,3 @@
-// js/top-imdb.js
 (function () {
   const API = "https://apiregularshow.onrender.com";
 

@@ -1,7 +1,6 @@
 (function () {
   const API = "https://apiregularshow.onrender.com";
 
-  // ---- utilidades ----
   function normaliza(s = "") {
     return (s || "").toString().normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
   }
@@ -35,7 +34,6 @@
     divDestino.innerHTML = lista.map(htmlCardPersonaje).join("");
   }
 
-  // ---- obtener todos los personajes ----
   async function fetchTodosPersonajes() {
     const PAGE = 100;
     let skip = 0;
@@ -99,7 +97,6 @@
     pintarLista(cont, filtrados);
   }
 
-  // ---- eventos de UI ----
   document.addEventListener("DOMContentLoaded", () => {
     cargarAleatorios20();
 

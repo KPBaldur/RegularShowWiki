@@ -1,7 +1,6 @@
 (function () {
   const API = "https://apiregularshow.onrender.com";
 
-  // ===== utilidades =====
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => [...document.querySelectorAll(sel)];
   const norm = (s="") => s.toString().normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
@@ -51,7 +50,6 @@
     return out;
   }
 
-  // ------- CARGAS PRINCIPALES -------
   let cacheCaps = null;
   async function getTodosLosCapitulos() {
     if (cacheCaps) return cacheCaps;
@@ -84,19 +82,15 @@
     const q = norm(raw.trim());
     const out = { text: "", temporada: null, numero: null, id: null };
 
-    // id CAPxxx
     const idm = q.match(/\bcap\d{3}\b/);
     if (idm) out.id = idm[0].toUpperCase();
 
-    // temporada N
     const tm = q.match(/temporada\s+(\d{1,2})/);
     if (tm) out.temporada = parseInt(tm[1], 10);
 
-    // numero N
     const nm = q.match(/(numero|número)\s+(\d{1,3})/);
     if (nm) out.numero = parseInt(nm[2], 10);
 
-    // texto libre
     out.text = q
       .replace(/\bcap\d{3}\b/, "")
       .replace(/temporada\s+\d{1,2}/, "")
@@ -153,20 +147,15 @@
   try {
     const rt = await fetch(`${API}/temporadas`);
     if (!rt.ok) throw new Error(rt.status);
-    const temps = await rt.json(); // [{id, numero, ... , capitulos:[CAPxxx]}]
+    const temps = await rt.json();
 
-    // Todos los capítulos (para armar las tarjetas dentro de cada temporada)
     const caps = await getTodosLosCapitulos();
     const byId = new Map(caps.map(c => [c.id, c]));
 
-    // Helper para obtener un número de temporada robusto
     const getNumeroTemp = (t, idx) => {
-      // 1) si viene numero, úsalo
       if (t.numero != null) return Number(t.numero);
-      // 2) intenta extraer dígitos del id (ej: TEMP01 -> 1)
       const m = String(t.id || "").match(/\d+/);
       if (m) return Number(m[0]);
-      // 3) fallback: índice + 1
       return idx + 1;
     };
 
@@ -207,18 +196,11 @@
   }
 }
 
-
-  // init
   document.addEventListener("DOMContentLoaded", () => {
-    // buscador
     $("#form-buscar-caps")?.addEventListener("submit", onBuscar);
     $("#btn-limpiar-caps")?.addEventListener("click", onLimpiar);
-
-    // aleatorios
     $("#btn-aleatorios-caps")?.addEventListener("click", cargarAleatorios);
     cargarAleatorios();
-
-    // acordeón
     cargarAcordeonTemporadas();
   });
 })();

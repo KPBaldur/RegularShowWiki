@@ -40,7 +40,7 @@
                 <article>
                     <h3>Ficha del capítulo (desde la API)</h3>
                     <div id="final-episode" class="episode-card" style="margin-top:10px;">
-                        <div class="episode-card__media"><!-- imagen --></div>
+                        <div class="episode-card__media"></div>
                         <div class="episode-card__body">
                         <div class="episode-card__title">Cargando…</div>
                         <ul class="episode-card__meta"></ul>
@@ -144,21 +144,16 @@
     <script>
         (function () {
         const API = "https://apiregularshow.onrender.com";
-        // Si conoces el ID exacto, ponlo aquí para evitar el barrido:
-        const KNOWN_ID = "CAP243"; // p.ej: "CAP261"
+        const KNOWN_ID = "CAP243";
 
-        // utils
         const norm = s => (s||"").normalize("NFD").replace(/\p{Diacritic}/gu,"").toLowerCase();
         const $ = sel => document.querySelector(sel);
 
         async function fetchFinalEpisode() {
-            // 1) Por ID conocido
             if (KNOWN_ID) {
             const r = await fetch(`${API}/capitulos/${KNOWN_ID}`);
             if (r.ok) return await r.json();
             }
-
-            // 2) Fallback: paginar con PAGE=100 (tu API rechaza 200)
             const PAGE = 100;
             let skip = 0;
             const all = [];
@@ -169,12 +164,11 @@
             const page = await res.json();
             if (!Array.isArray(page) || page.length === 0) break;
             all.push(...page);
-            if (page.length < PAGE) break;  // última página
+            if (page.length < PAGE) break;
             skip += PAGE;
-            if (skip > 1000) break;         // tope de seguridad
+            if (skip > 1000) break;
             }
 
-            // Busca por título “épica batalla final” (tolerante a tildes/may-min)
             const target = all.find(ep => norm(ep.titulo).includes("epica batalla final"));
             if (!target) throw new Error("No se encontró el capítulo final por título.");
             return target;
