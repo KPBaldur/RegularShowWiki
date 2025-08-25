@@ -173,64 +173,90 @@
     return avg.toFixed(1);
   }
 
-  async function cargarAcordeonTemporadas() {
-    const wrap = $("#lista-temporadas");
-    if (!wrap) return;
-    wrap.innerHTML = '<div class="skeleton">Cargando temporadas…</div>';
+// Helpers
+const toNum = (v, def = 0) => (v == null || v === "" ? def : Number(v));
+const avg = arr => (arr.length ? (arr.reduce((a,b)=>a+b,0) / arr.length) : null);
 
+// Reemplaza COMPLETO tu función cargarAcordeonTemporadas por esta:
+async function cargarAcordeonTemporadas() {
+  const wrap = document.querySelector("#lista-temporadas");
+  if (!wrap) return;
+  wrap.innerHTML = '<div class="skeleton">Cargando temporadas…</div>';
+
+  try {
+    // 1) Traemos temporadas (para los números y orden)
+    const rt = await fetch(`${API}/temporadas`);
+    if (!rt.ok) throw new Error(rt.status);
+    const temporadas = await rt.json();
+
+    // 2) Traemos resumen (si existe) para el IMDb medio
+    //    Si no existe este endpoint en tu API, lo calculamos abajo.
+    let resumenPorTemp = new Map();
     try {
-      // 1) meta de temporadas
-      const rt = await fetch(`${API}/temporadas`);
-      if (!rt.ok) throw new Error(rt.status);
-      const temporadas = await rt.json();
+      const rr = await fetch(`${API}/temporadas/resumen`);
+      if (rr.ok) {
+        const resumen = await rr.json();
+        resumenPorTemp = new Map(
+          resumen.map(r => [toNum(r.numero_temporada), r.promedio_imdb_score])
+        );
+      }
+    } catch (_) { /* opcional */ }
 
-      // 2) universo de capítulos
-      const caps = await getTodosLosCapitulos();
-      const byId = new Map(caps.map(c => [c.id, c]));
+    // 3) Traemos TODOS los capítulos una sola vez
+    const caps = await getTodosLosCapitulos();
 
-      // 3) pintar acordeón
-      const html = temporadas
-        .sort((a, b) => numTemporada(a, 0) - numTemporada(b, 0))
-        .map((t, idx) => {
-          const nTemp = numTemporada(t, idx);
+    // 4) Ordénalas por numero_temporada de forma robusta
+    const getNumTemp = (t, idx) => {
+      if (t.numero_temporada != null) return toNum(t.numero_temporada, idx+1);
+      if (t.numero != null) return toNum(t.numero, idx+1);
+      const m = String(t.id || "").match(/\d+/);
+      return m ? toNum(m[0], idx+1) : (idx + 1);
+    };
 
-          // Preferimos la lista explícita; si no existe o es mala, derivamos por 'ep.temporada'
-          let lista = Array.isArray(t.capitulos) && t.capitulos.length
-            ? t.capitulos.map(id => byId.get(id)).filter(Boolean)
-            : caps.filter(c => Number(c.temporada) === Number(nTemp));
+    const html = temporadas
+      .slice()
+      .sort((a, b) => getNumTemp(a, 0) - getNumTemp(b, 0))
+      .map((t, i) => {
+        const numTemp = getNumTemp(t, i);
 
-          // Orden estable por número
-          lista.sort((a, b) => Number(a.numero) - Number(b.numero));
+        // 5) **Clave**: derivamos capítulos SOLO filtrando por ep.temporada
+        const capsDeTemp = caps
+          .filter(ep => toNum(ep.temporada) === numTemp)
+          .sort((a, b) => toNum(a.numero) - toNum(b.numero));
 
-          const total = t.numero_capitulos ?? lista.length;
-          const imdbMedio = (t.promedio_imdb != null && t.promedio_imdb !== "")
-            ? t.promedio_imdb
-            : promedioImdb(lista);
+        // 6) IMDb medio: del resumen si existe; si no, lo calculamos
+        let imdbMedio = resumenPorTemp.get(numTemp);
+        if (imdbMedio == null) {
+          const scores = capsDeTemp
+            .map(c => (c.imdb_score == null || c.imdb_score === "" ? null : Number(c.imdb_score)))
+            .filter(v => v != null && !Number.isNaN(v));
+          imdbMedio = scores.length ? avg(scores).toFixed(2) : "N/A";
+        }
 
-          const cards = lista.length
-            ? lista.map(cardEpisodio).join("")
-            : '<p class="hero-note">Sin capítulos enlazados.</p>';
+        const total = capsDeTemp.length;
+        const cards = capsDeTemp.map(cardEpisodio).join("");
 
-          return `
-            <details class="acc">
-              <summary>
-                <span>Temporada ${String(nTemp).padStart(2, "0")}</span>
-                <small>(${total} eps · IMDb medio: ${imdbMedio})</small>
-              </summary>
-              <div class="acc__panel grid-episodios">
-                ${cards}
-              </div>
-            </details>
-          `;
-        })
-        .join("");
+        return `
+          <details class="acc">
+            <summary>
+              <span>Temporada ${String(numTemp).padStart(2, "0")}</span>
+              <small>(${total} eps · IMDb medio: ${imdbMedio})</small>
+            </summary>
+            <div class="acc__panel grid-episodios">
+              ${cards || '<p class="hero-note">Sin capítulos.</p>'}
+            </div>
+          </details>
+        `;
+      })
+      .join("");
 
-      wrap.innerHTML = html;
-    } catch (e) {
-      console.error(e);
-      wrap.innerHTML = '<p class="error">No se pudieron cargar las temporadas.</p>';
-    }
+    wrap.innerHTML = html;
+  } catch (e) {
+    console.error(e);
+    wrap.innerHTML = '<p class="error">No se pudieron cargar las temporadas.</p>';
   }
+}
+
 
   /* --------- init --------- */
   document.addEventListener("DOMContentLoaded", () => {
