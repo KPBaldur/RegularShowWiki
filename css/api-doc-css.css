@@ -2,6 +2,7 @@
   width: 100%;
   background: #fff;
   float: left;
+  overflow-x: hidden;
 }
 
 .topbar { display: none; }
@@ -93,4 +94,313 @@ footer {
 .posts ul {
   list-style: none;
   padding-left: 0;
+}
+
+/* Hero Banner - NO CAMBIAR */
+.hero-banner {
+  text-align: center;
+  margin: 0;
+}
+
+.hero-banner img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Contenido principal */
+.intro {
+  padding: 20px 0;
+}
+
+.intro-content {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.tech-list li {
+  background: var(--rs-bg-muted);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rs-border);
+  font-size: 14px;
+}
+
+/* Imágenes de contenido */
+.intro-image img, .support-image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin: 10px 0;
+  display: block;
+}
+
+.intro-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Secciones organizadas */
+.api-guide, .intro, .endpoints, .recommendations, .errors, .swagger-section, .support-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Tablas responsivas */
+.table-responsive {
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+.table-responsive table {
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.table-responsive th, .table-responsive td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rs-border);
+}
+
+/* Listas de parámetros */
+.params-list dt {
+  font-weight: bold;
+  color: var(--rs-primary);
+  margin-top: 10px;
+}
+
+.params-list dd {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+/* Códigos de error */
+.error-codes dt {
+  font-weight: bold;
+  color: #d32f2f;
+  margin-top: 10px;
+}
+
+.error-codes dd {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+/* Cajas de consejos */
+.tip-box {
+  background: #e3f2fd;
+  border-left: 4px solid var(--rs-primary);
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Lista de recomendaciones */
+.recommendations-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.recommendations-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rs-border);
+}
+
+.recommendations-list li:last-child {
+  border-bottom: none;
+}
+
+/* Contenido de soporte */
+.support-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Estilos para móvil */
+@media (max-width: 768px) {
+  .main {
+    padding: 0 10px;
+  }
+  
+  .intro, .api-guide, .endpoints, .recommendations, .errors, .swagger-section, .support-section {
+    margin: 15px 0;
+    padding: 15px;
+  }
+  
+  .intro-content {
+    font-size: 14px;
+  }
+  
+  .tech-list {
+    justify-content: center;
+  }
+  
+  .intro-image img, .support-image img {
+    max-width: 320px;
+  }
+  
+  .support-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .table-responsive {
+    font-size: 14px;
+  }
+  
+  /* Swagger UI optimizado para móvil */
+  .swagger-ui {
+    font-size: 14px;
+  }
+  
+  .swagger-ui .opblock {
+    margin: 8px 0;
+  }
+  
+  .swagger-ui .opblock-summary {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .swagger-ui .opblock-summary-method {
+    min-width: 60px;
+    font-size: 12px;
+  }
+  
+  .swagger-ui .opblock-summary-path {
+    font-size: 13px;
+    word-break: break-all;
+  }
+  
+  .swagger-ui .opblock-body {
+    padding: 10px;
+  }
+  
+  .swagger-ui .parameters-col_description {
+    font-size: 13px;
+  }
+  
+  .swagger-ui .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .swagger-ui input[type=text],
+  .swagger-ui select,
+  .swagger-ui textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .swagger-ui .info {
+    padding: 15px;
+  }
+  
+  .swagger-ui .info .title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 0 8px;
+  }
+  
+  .intro, .api-guide, .endpoints, .recommendations, .errors, .swagger-section, .support-section {
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  .intro-content {
+    font-size: 13px;
+  }
+  
+  .intro-image img, .support-image img {
+    max-width: 280px;
+  }
+  
+  .tech-list li {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  
+  .table-responsive {
+    font-size: 12px;
+  }
+  
+  /* Swagger UI para pantallas muy pequeñas */
+  .swagger-ui {
+    font-size: 13px;
+  }
+  
+  .swagger-ui .opblock-summary {
+    padding: 8px;
+    font-size: 13px;
+  }
+  
+  .swagger-ui .opblock-summary-method {
+    min-width: 50px;
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  
+  .swagger-ui .opblock-summary-path {
+    font-size: 12px;
+  }
+  
+  .swagger-ui .opblock-body {
+    padding: 8px;
+  }
+  
+  .swagger-ui .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .swagger-ui input[type=text],
+  .swagger-ui select,
+  .swagger-ui textarea {
+    font-size: 13px;
+    padding: 6px;
+  }
+  
+  .swagger-ui .info {
+    padding: 12px;
+  }
+  
+  .swagger-ui .info .title {
+    font-size: 20px;
+  }
+  
+  .swagger-ui .parameters-col_description {
+    font-size: 12px;
+  }
+  
+  .swagger-ui .opblock-tag {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .tip-box {
+    padding: 12px;
+    font-size: 13px;
+  }
 }

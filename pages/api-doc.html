@@ -71,17 +71,21 @@
             Basta con leer la documentacion, los tips para poder sacar el maximo provecho de la API y jugar con los ejemplos.
           </p><br>
 
-          <img src="../img/Skips.png" alt="">
+          <div class="intro-image">
+            <img src="../img/Skips.png" alt="Skips personaje de Regular Show">
+          </div>
 
-          <p><br>
-            Así que, si eres un programador novicio o simplemente quieres aprender más sobre el consumo de APIs, te recomiendo
-            no entrar en pánico y desesperarte, tomarte con calma y seguir los pasos de la documentación.
-          </p>
+          <div class="intro-content">
+            <p>
+              Así que, si eres un programador novicio o simplemente quieres aprender más sobre el consumo de APIs, te recomiendo
+              no entrar en pánico y desesperarte, tomarte con calma y seguir los pasos de la documentación.
+            </p>
+          </div>
 
           <article id="tecnologias-api">
             <h2>Tecnologías usadas en esta API</h2>
             <p>Esta API fue desarrollada con un stack moderno y ligero que facilita tanto el despliegue como el consumo:</p>
-            <ul>
+            <ul class="tech-list">
               <li><b>Python 3.11</b> — lenguaje base del proyecto</li>
               <li><b>FastAPI</b> — framework para crear APIs rápidas y tipadas</li>
               <li><b>Uvicorn</b> — servidor ASGI que ejecuta la aplicación</li>
@@ -89,141 +93,158 @@
               <li><b>JSON estructurado</b> — formato de los datos consumibles</li>
               <li><b>Render</b> — plataforma de hosting y despliegue</li>
             </ul>
-          </article><br><br>
+          </article>
+        </section>
 
-          
+        <section class="api-guide">
+          <h1>Regular Show API – Guía rápida de uso</h1>
 
-          <h1 style="margin-top:0">Regular Show API – Guía rápida de uso</h1>
+          <article class="base-url">
+            <h2>Base URL</h2>
+            <pre><code>https://apiregularshow.onrender.com</code></pre>
+          </article>
 
-          <h2>Base URL</h2>
-          <br>
-          <pre><code>https://apiregularshow.onrender.com</code></pre>
-          <br>
+          <article class="id-formats">
+            <h2>Formatos de ID</h2>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Recurso</th>
+                    <th>Prefijo</th>
+                    <th>Ejemplo</th>
+                    <th>Notas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Personajes</td>
+                    <td><code>CHARCT</code></td>
+                    <td><code>CHARCT001</code></td>
+                    <td>IDs alfanuméricos, 3 dígitos con cero a la izquierda</td>
+                  </tr>
+                  <tr>
+                    <td>Capítulos</td>
+                    <td><code>CAP</code></td>
+                    <td><code>CAP001</code></td>
+                    <td>Incluye temporada, número, sinopsis e <code>imdb_score</code></td>
+                  </tr>
+                  <tr>
+                    <td>Temporadas</td>
+                    <td><code>TEMP</code></td>
+                    <td><code>TEMP01</code></td>
+                    <td>Devuelve también <b>numero_capitulos</b> y <b>promedio_imdb</b></td>
+                  </tr>
+                  <tr>
+                    <td>Cómics</td>
+                    <td><code>COMC</code></td>
+                    <td><code>COMC001</code></td>
+                    <td>Campos: autores, ilustradores, tipo, publicación…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
 
-          <h2>Formatos de ID</h2>
-            <table style="width:100%;border-collapse:collapse">
-              <thead>
-                <tr>
-                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Recurso</th>
-                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Prefijo</th>
-                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Ejemplo</th>
-                  <th style="text-align:left;border-bottom:1px solid #eee;padding:6px 4px">Notas</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="padding:6px 4px">Personajes</td>
-                  <td style="padding:6px 4px"><code>CHARCT</code></td>
-                  <td style="padding:6px 4px"><code>CHARCT001</code></td>
-                  <td style="padding:6px 4px">IDs alfanuméricos, 3 dígitos con cero a la izquierda</td>
-                </tr>
-                <tr>
-                  <td style="padding:6px 4px">Capítulos</td>
-                  <td style="padding:6px 4px"><code>CAP</code></td>
-                  <td style="padding:6px 4px"><code>CAP001</code></td>
-                  <td style="padding:6px 4px">Incluye temporada, número, sinopsis e <code>imdb_score</code></td>
-                </tr>
-                <tr>
-                  <td style="padding:6px 4px">Temporadas</td>
-                  <td style="padding:6px 4px"><code>TEMP</code></td>
-                  <td style="padding:6px 4px"><code>TEMP01</code></td>
-                  <td style="padding:6px 4px">Devuelve también <b>numero_capitulos</b> y <b>promedio_imdb</b></td>
-                </tr>
-                <tr>
-                  <td style="padding:6px 4px">Cómics</td>
-                  <td style="padding:6px 4px"><code>COMC</code></td>
-                  <td style="padding:6px 4px"><code>COMC001</code></td>
-                  <td style="padding:6px 4px">Campos: autores, ilustradores, tipo, publicación…</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <br><hr><br>
-
+          <article class="common-params">
             <h2>Parámetros comunes</h2>
-            <ul>
-              <li><code>?limit=&lt;n&gt;</code> — cuántos ítems devolver (útil para paginar).</li>
-              <li><code>?skip=&lt;n&gt;</code> — cuántos ítems omitir desde el inicio (siguiente página).</li>
-            </ul>
-            <div style="background:#eaf6fd;border:1px solid #cfe9fb;border-radius:10px;padding:10px;margin:10px 0">
+            <dl class="params-list">
+              <dt><code>?limit=&lt;n&gt;</code></dt>
+              <dd>Cuántos ítems devolver (útil para paginar).</dd>
+              <dt><code>?skip=&lt;n&gt;</code></dt>
+              <dd>Cuántos ítems omitir desde el inicio (siguiente página).</dd>
+            </dl>
+            <div class="tip-box">
               <b>Tip:</b> para recorrer páginas usa <code>?limit=20&amp;skip=0</code>, luego <code>?limit=20&amp;skip=20</code>, etc.
             </div>
+          </article>
 
-            <br><hr><br>
+          <article class="endpoints">
+            <h2>Endpoints por recurso</h2>
 
-            <h2>Endpoints por recurso</h2><br>
+            <section class="endpoint-group">
+              <h3>Personajes</h3>
+              <ul>
+                <li><code>GET /personajes</code> — lista paginada.</li>
+                <li><code>GET /personajes/{id}</code> — detalle por ID (p.ej. <code>CHARCT001</code>).</li>
+                <li><code>GET /personajes/principales</code> — elenco principal.</li>
+                <li><code>GET /personajes/aleatorio/{n}</code> — <em>n</em> personajes aleatorios.</li>
+              </ul>
+            </section>
 
-            <h3>Personajes</h3>
-            <ul>
-              <li><code>GET /personajes</code> — lista paginada.</li>
-              <li><code>GET /personajes/{id}</code> — detalle por ID (p.ej. <code>CHARCT001</code>).</li>
-              <li><code>GET /personajes/principales</code> — elenco principal.</li>
-              <li><code>GET /personajes/aleatorio/{n}</code> — <em>n</em> personajes aleatorios.</li>
-            </ul><br>
+            <section class="endpoint-group">
+              <h3>Capítulos</h3>
+              <ul>
+                <li><code>GET /capitulos</code> — lista (campos: <code>id</code>, <code>titulo</code>, <code>numero</code>, <code>temporada</code>, <code>fecha_estreno</code>, <code>imdb_score</code>, <code>sinopsis</code>, <code>imagen_url</code>…)</li>
+                <li><code>GET /capitulos/{id}</code> — detalle por ID (p.ej. <code>CAP001</code>).</li>
+              </ul>
+            </section>
 
-            <h3>Capítulos</h3>
-            <ul>
-              <li><code>GET /capitulos</code> — lista (campos: <code>id</code>, <code>titulo</code>, <code>numero</code>, <code>temporada</code>, <code>fecha_estreno</code>, <code>imdb_score</code>, <code>sinopsis</code>, <code>imagen_url</code>…)</li>
-              <li><code>GET /capitulos/{id}</code> — detalle por ID (p.ej. <code>CAP001</code>).</li>
-            </ul><br>        
+            <section class="endpoint-group">
+              <h3>Temporadas</h3>
+              <ul>
+                <li><code>GET /temporadas</code> — lista con agregados <b>numero_capitulos</b> y <b>promedio_imdb</b>.</li>
+                <li><code>GET /temporadas/{id}</code> — detalle por ID (p.ej. <code>TEMP01</code>), con lista de <code>capitulos</code> por ID.</li>
+              </ul>
+            </section>
 
-            <h3>Temporadas</h3>
-            <ul>
-              <li><code>GET /temporadas</code> — lista con agregados <b>numero_capitulos</b> y <b>promedio_imdb</b>.</li>
-              <li><code>GET /temporadas/{id}</code> — detalle por ID (p.ej. <code>TEMP01</code>), con lista de <code>capitulos</code> por ID.</li>
-            </ul><br>
+            <section class="endpoint-group">
+              <h3>Cómics</h3>
+              <ul>
+                <li><code>GET /comics</code> — lista paginada (campos: <code>id</code>, <code>titulo</code>, <code>tipo</code>, <code>numero_issues</code>, <code>autores</code>, <code>ilustradores</code>, <code>publicacion</code>…)</li>
+                <li><code>GET /comics/{id}</code> — detalle por ID (p.ej. <code>COMC001</code>).</li>
+              </ul>
+            </section>
+          </article>
 
-            <h3>Cómics</h3>
-            <ul>
-              <li><code>GET /comics</code> — lista paginada (campos: <code>id</code>, <code>titulo</code>, <code>tipo</code>, <code>numero_issues</code>, <code>autores</code>, <code>ilustradores</code>, <code>publicacion</code>…)</li>
-              <li><code>GET /comics/{id}</code> — detalle por ID (p.ej. <code>COMC001</code>).</li>
-            </ul>
-
-            <br><hr><br>
-
+          <article class="recommendations">
             <h2>Recomendaciones de uso</h2>
-            <ul>
+            <ul class="recommendations-list">
               <li>Para listas largas (ej. capítulos), usa <code>?limit</code> + <code>?skip</code> para paginar.</li>
               <li>El campo <code>imagen_url</code> es externo: respeta el <em>cache</em> del navegador y evita solicitar la misma imagen muchas veces en poco tiempo.</li>
               <li>Si tu cliente es público, enlaza a esta Wiki para crédito y contexto del proyecto.</li>
               <li>Para demos, combina <code>/personajes/aleatorio/{n}</code> con tarjetas visuales; y grafica <code>promedio_imdb</code> por temporada.</li>
             </ul>
+          </article>
 
-            <br><hr><br>
-
+          <article class="errors">
             <h2>Errores y validación</h2>
-            <ul>
-              <li><code>404</code> — recurso no encontrado (ID inexistente).</li>
-              <li><code>422</code> — validación de parámetros (p.ej., tipos incorrectos).</li>
-              <li><code>500</code> — error interno.</li>
-            </ul><br>
+            <dl class="error-codes">
+              <dt><code>404</code></dt>
+              <dd>Recurso no encontrado (ID inexistente).</dd>
+              <dt><code>422</code></dt>
+              <dd>Validación de parámetros (p.ej., tipos incorrectos).</dd>
+              <dt><code>500</code></dt>
+              <dd>Error interno.</dd>
+            </dl>
             <p>Las respuestas de error salen en JSON con mensaje y, en validación, detalles de campos.</p>
-
+          </article>
         </section>
 
-        <!--###################################################-->
-        <!------------------------HEADER------------------------->
-        <!--###################################################-->
-        <div class="swagger-wrap page-full">
-          <div id="swagger-ui"></div>
-        </div>
+        <section class="swagger-section">
+          <h2>Documentación Interactiva de la API</h2>
+          <div class="swagger-wrap page-full">
+            <div id="swagger-ui"></div>
+          </div>
+        </section>
 
-        <br><hr><br>
-
-        <h2>Reporte de errores y avisos.</h2><br>
-        <p>
-          Para los avisos de cualquier error o problema, por favor utiliza el canal de soporte correspondiente indicado en el repositorio
-          de GitHub de este mismo proyecto. Puedes reportar errores, sugerir mejoras o simplemente comentar sobre el uso de la API.
-          <br><br>
-          <img src="../img/Code.gif" alt=""><br>
-          <strong>Recuerda:</strong> No dudes en pedir ayuda si la necesitas.
-        </p>
-        
-        <P>
-          A continuacion el repositorio de GitHub para las consultas generales:
-          <br>
-          <a href="https://github.com/KPBaldur/ApiRegularShow" target="_blank">https://github.com/KPBaldur/ApiRegularShow</a>
-        </P>
+        <section class="support-section">
+          <h2>Reporte de errores y avisos</h2>
+          <div class="support-content">
+            <p>
+              Para los avisos de cualquier error o problema, por favor utiliza el canal de soporte correspondiente indicado en el repositorio
+              de GitHub de este mismo proyecto. Puedes reportar errores, sugerir mejoras o simplemente comentar sobre el uso de la API.
+            </p>
+            <div class="support-image">
+              <img src="../img/Code.gif" alt="Código animado">
+            </div>
+            <p><strong>Recuerda:</strong> No dudes en pedir ayuda si la necesitas.</p>
+            <p>
+              A continuación el repositorio de GitHub para las consultas generales:<br>
+              <a href="https://github.com/KPBaldur/ApiRegularShow" target="_blank">https://github.com/KPBaldur/ApiRegularShow</a>
+            </p>
+          </div>
+        </section>
       </section>
     </section>
 
