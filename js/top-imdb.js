@@ -66,7 +66,7 @@
     const sinopsis = safe(ep.sinopsis, "Sin descripción disponible.");
 
     const video = ep.video_url || ep.youtube_id
-      ? `<div class="topep__video">
+      ? `<div class="topep-card__video">
            <iframe src="${ep.video_url || `https://www.youtube.com/embed/${ep.youtube_id}`}"
                    title="YouTube video player" frameborder="0"
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -75,22 +75,37 @@
       : "";
 
     return `
-      <article class="topep">
-        <h3 class="topep__title">
-          N° ${rank} – ${titulo} – <span class="topep__score">${score}</span>
-        </h3>
-        <hr>
-        <div class="topep__media">
-          <img src="${img}" alt="Capítulo ${titulo}">
+      <article class="topep-card">
+        <div class="topep-card__header">
+          <div class="topep-card__rank">#${rank}</div>
+          <div class="topep-card__score">
+            <span class="score-value">${score}</span>
+            <span class="score-label">IMDb</span>
+          </div>
         </div>
-        <ul class="topep__meta">
-          <li><b>Temporada:</b> ${temp}</li>
-          <li><b>Capítulo:</b> ${num}</li>
-          <li><b>IMDb:</b> ${score}</li>
-        </ul>
-        ${video}
-        <p class="topep__desc">${sinopsis}</p>
-        <br>
+        
+        <div class="topep-card__content">
+          <div class="topep-card__image">
+            <img src="${img}" alt="Capítulo ${titulo}" loading="lazy">
+          </div>
+          
+          <div class="topep-card__info">
+            <h3 class="topep-card__title">${titulo}</h3>
+            
+            <div class="topep-card__meta">
+              <span class="meta-item">
+                <strong>Temporada:</strong> ${temp}
+              </span>
+              <span class="meta-item">
+                <strong>Capítulo:</strong> ${num}
+              </span>
+            </div>
+            
+            <p class="topep-card__description">${sinopsis}</p>
+            
+            ${video}
+          </div>
+        </div>
       </article>
     `;
   }

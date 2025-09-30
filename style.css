@@ -429,6 +429,182 @@ footer {
 }
 
 /*####################################*/
+/*-------------TOP IMDB STYLES-------*/
+/*###################################*/
+
+/* Contenedor principal del top IMDB */
+.topimdb-list {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Tarjetas del Top IMDb - Diseño moderno */
+.topep-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.topep-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-color: #ff8000;
+}
+
+/* Header de la tarjeta con ranking y score */
+.topep-card__header {
+    background: linear-gradient(135deg, #ff8000, #ff9500);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.topep-card__rank {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.topep-card__score {
+    text-align: right;
+}
+
+.score-value {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.score-label {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+/* Contenido principal de la tarjeta */
+.topep-card__content {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+/* Imagen del episodio */
+.topep-card__image {
+    flex-shrink: 0;
+    width: 160px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.topep-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.topep-card:hover .topep-card__image img {
+    transform: scale(1.05);
+}
+
+/* Información del episodio */
+.topep-card__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.topep-card__title {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Metadatos */
+.topep-card__meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    background: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid #e9ecef;
+    color: #495057;
+}
+
+.meta-item strong {
+    color: #2c3e50;
+}
+
+/* Descripción */
+.topep-card__description {
+    color: #6c757d;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+/* Video embebido */
+.topep-card__video {
+    margin-top: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.topep-card__video iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+}
+
+/* Estados de carga y error */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 16px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.error {
+    background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+    color: #d32f2f;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ffcdd2;
+}
+
+/*####################################*/
 /*-------------MEDIAQUERY------------*/
 /*###################################*/
 
@@ -522,6 +698,42 @@ footer {
       flex:1 1 100%;
       max-width:none;
     }
+
+    /* TOP IMDB - Tablet */
+    .topep-card__content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .topep-card__image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .topep-card__header {
+        padding: 14px 18px;
+    }
+
+    .topep-card__rank {
+        font-size: 1.6rem;
+    }
+
+    .score-value {
+        font-size: 1.4rem;
+    }
+
+    .topep-card__title {
+        font-size: 1.2rem;
+    }
+
+    .topep-card__video iframe {
+        height: 180px;
+    }
+
+    .meta-item {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -554,15 +766,55 @@ footer {
     text-align: center;
     justify-content: center;
   }
-}
 
-/*
-@media (max-width: 480px) {
-  .episode-card__img {
+  /* TOP IMDB - Mobile */
+  .topep-card {
+    margin-bottom: 16px;
+  }
+
+  .topep-card__content {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .topep-card__header {
+    padding: 12px 16px;
+  }
+
+  .topep-card__rank {
+    font-size: 1.4rem;
+  }
+
+  .score-value {
+    font-size: 1.2rem;
+  }
+
+  .topep-card__image {
     height: 140px;
-    object-fit: cover;
   }
-  .episode-card__body {
-    padding: 0.75rem;
+
+  .topep-card__title {
+    font-size: 1.1rem;
+    line-height: 1.2;
   }
-}*/
+
+  .topep-card__meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .meta-item {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    text-align: center;
+  }
+
+  .topep-card__description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .topep-card__video iframe {
+    height: 160px;
+  }
+}
