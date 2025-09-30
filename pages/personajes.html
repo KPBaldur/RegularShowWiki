@@ -141,9 +141,15 @@
             </div>
         </aside>
 
-        <footer>
-            <p>Kevin Pizarro 2022 - Todos los Derechos Reservados</p>
-        </footer>
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch('../partials/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        </script>
     </div>
 
         <script src="../js/personajes-page.js"></script>
