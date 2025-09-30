@@ -58,7 +58,7 @@
 
   function htmlItem(ep, idx) {
     const rank = 10 - idx;
-    const titulo = safe(ep.titulo, "Sin título");
+    const titulo = safe(ep.titulo_es || ep.titulo_eng || ep.titulo, "Sin título");
     const score = ep.imdb_score != null ? ep.imdb_score : "N/A";
     const temp = pad2(ep.temporada);
     const num  = pad2(ep.capitulo ?? ep.numero);

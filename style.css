@@ -537,6 +537,23 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .episode-card__media { width: 40%; min-width: 150px; }
-  .episode-card__body  { width: 60%; }
+  .episode-card { 
+    flex-direction: row; 
+    align-items: stretch;
+  }
+  .episode-card__media { 
+    width: 40%; 
+    min-width: 150px; 
+    flex: 0 0 40%;
+  }
+  .episode-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .episode-card__body { 
+    width: 60%; 
+    flex: 1;
+    padding: 0.8rem;
+  }
 }

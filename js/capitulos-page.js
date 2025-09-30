@@ -16,13 +16,16 @@
     const temp  = String(ep.temporada ?? "").padStart(2, "0");
     const num   = String(ep.numero    ?? "").padStart(2, "0");
 
+    // Manejar títulos en español e inglés
+    const titulo = ep.titulo_es || ep.titulo_eng || ep.titulo || "Sin título";
+
     return `
       <article class="episode-card">
         <div class="episode-card__media">
-          <img class="episode-card__img" src="${img}" alt="Capítulo ${ep.titulo}">
+          <img class="episode-card__img" src="${img}" alt="Capítulo ${titulo}">
         </div>
         <div class="episode-card__body">
-          <div class="episode-card__title"><b>${ep.titulo}</b></div>
+          <div class="episode-card__title"><b>${titulo}</b></div>
           <ul class="episode-card__meta">
             <li><b>ID:</b> ${ep.id}</li>
             <li><b>Temporada:</b> ${temp}</li>
@@ -131,7 +134,10 @@
       if (numero)     res = res.filter(ep => Number(ep.numero) === Number(numero));
       if (text) {
         const t = norm(text);
-        res = res.filter(ep => norm(ep.titulo || "").includes(t));
+        res = res.filter(ep => {
+          const titulo = ep.titulo_es || ep.titulo_eng || ep.titulo || "";
+          return norm(titulo).includes(t);
+        });
       }
 
       res.sort((a,b) => (a.temporada - b.temporada) || (a.numero - b.numero));

@@ -169,7 +169,10 @@
             if (skip > 1000) break;
             }
 
-            const target = all.find(ep => norm(ep.titulo).includes("epica batalla final"));
+            const target = all.find(ep => {
+                const titulo = ep.titulo_es || ep.titulo_eng || ep.titulo || "";
+                return norm(titulo).includes("epica batalla final");
+            });
             if (!target) throw new Error("No se encontró el capítulo final por título.");
             return target;
         }
@@ -182,9 +185,12 @@
             const meta  = wrap.querySelector(".episode-card__meta");
             const sin   = wrap.querySelector(".episode-card__sinopsis");
 
+            // Manejar títulos en español e inglés
+            const titulo = ep.titulo_es || ep.titulo_eng || ep.titulo || "Sin título";
+
             const img = ep.imagen_url || "../img/placeholder-episodio.jpg";
-            media.innerHTML = `<img class="episode-card__img" src="${img}" alt="Capítulo ${ep.titulo}">`;
-            title.textContent = ep.titulo;
+            media.innerHTML = `<img class="episode-card__img" src="${img}" alt="Capítulo ${titulo}">`;
+            title.textContent = titulo;
 
             const imd = ep.imdb_score ?? "N/A";
             const temp = String(ep.temporada ?? "—").padStart(2,"0");

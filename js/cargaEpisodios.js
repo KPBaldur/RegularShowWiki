@@ -32,14 +32,17 @@ function tarjetaEpisodio(ep) {
   const nroEpisodio = (ep.numero ?? ep.capitulo ?? "");
   const nroFmt = String(nroEpisodio).padStart(2, "0");
 
+  // Manejar títulos en español e inglés
+  const titulo = ep.titulo_es || ep.titulo_eng || ep.titulo || "Sin título";
+
   const temporadaFmt = String(ep.temporada ?? "").padStart(2, "0");
   return `
     <article class="episode-card">
       <div class="episode-card__media">
-        <img class="episode-card__img" src="${img}" alt="Capítulo ${ep.titulo}">
+        <img class="episode-card__img" src="${img}" alt="Capítulo ${titulo}">
       </div>
       <div class="episode-card__body">
-        <div class="episode-card__title"><b>Nombre Capítulo:</b> ${ep.titulo}</div>
+        <div class="episode-card__title"><b>Nombre Capítulo:</b> ${titulo}</div>
         <ul class="episode-card__meta">
           <li><b>Temporada:</b> ${temporadaFmt}</li>
           <li><b>Capitulo:</b> ${nroFmt}</li>
